@@ -231,7 +231,7 @@
       <h3>Request a quote</h3>
       <p>Fill out what you can — we'll figure out the rest together.</p>
 
-      <form action='/thanks' method='POST' name='contact'>
+      <form id="contactForm" name="contact">
         <input type="hidden" name="form-name" value="contact">
         <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
 
@@ -321,6 +321,32 @@
     </div>
   </div>
 </footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const fields = [
+      ['Name', form.name.value],
+      ['Email', form.email.value],
+      ['Phone', form.phone.value],
+      ['Publication', form.publication.value],
+      ['Pages per issue', form.pages.value],
+      ['Content type', form['content-type'].value],
+      ['Message', form.message.value]
+    ];
+
+    const body = fields
+      .filter(([, value]) => value && value.trim())
+      .map(([label, value]) => `${label}: ${value.trim()}`)
+      .join('\n\n');
+
+    const subject = encodeURIComponent('LayoutSystem quote request');
+    const message = encodeURIComponent(body);
+    window.location.href = `mailto:yaakov@layoutsystem.com?subject=${subject}&body=${message}`;
+  });
+</script>
 
 </body>
 </html>
