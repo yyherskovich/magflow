@@ -328,13 +328,21 @@
 
   /* Advanced SEO content section */
   .seo-hub-section { padding: 88px 48px; background:#fff; }
-  .seo-hub-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap:48px; align-items:start; }
-  .seo-hub-copy p { color:#49615e; font-size:18px; line-height:1.75; margin:0 0 18px; max-width:640px; }
-  .seo-hub-list { display:grid; gap:14px; }
+  .seo-hub-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(360px,.9fr); gap:72px; align-items:center; }
+  .seo-hub-copy { min-width:0; max-width:620px; }
+  .seo-hub-copy .section-title { font-size:clamp(30px,3vw,46px); margin-bottom:34px; }
+  .seo-hub-copy p { color:#49615e; font-size:18px; line-height:1.75; margin:0 0 18px; max-width:610px; }
+  .seo-hub-list { display:grid; gap:14px; width:min(100%,520px); justify-self:center; align-self:center; }
   .seo-hub-link { display:block; text-decoration:none; color:#0a2e2b; border:1px solid #d5e0df; border-radius:8px; padding:18px 20px; background:#fffdf8; transition:.2s ease; }
   .seo-hub-link:hover { border-color:#c49b3c; transform:translateY(-2px); box-shadow:0 10px 28px rgba(10,46,43,.08); }
   .seo-hub-link strong { display:block; font-size:17px; margin-bottom:5px; }
   .seo-hub-link span { display:block; color:#60716f; font-size:14px; line-height:1.45; }
+  @media (max-width:900px) {
+    .seo-hub-section { padding:56px 22px; }
+    .seo-hub-grid { grid-template-columns:1fr; gap:30px; }
+    .seo-hub-list { justify-self:stretch; width:100%; }
+    .seo-hub-copy .section-title { font-size:32px; }
+  }
 </style>
 <script type="application/ld+json">
 {
