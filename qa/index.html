@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Q&A — LayoutSystem</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; -webkit-font-smoothing: antialiased; }
+
+  /* ── NAV ── */
+  nav {
+    position: relative; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,46,43,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(196,155,60,0.15);
+    padding: 0 48px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: #fff;
+    text-decoration: none; letter-spacing: -0.02em; font-weight: 700;
+  }
+  .nav-logo span { color: #c49b3c; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a.active { color: #c49b3c; }
+  .nav-cta {
+    background: linear-gradient(135deg, #c49b3c, #a8832e) !important;
+    color: #fff !important; padding: 10px 22px;
+    border-radius: 8px; font-weight: 600 !important;
+    transition: all 0.2s !important;
+  }
+  .nav-cta:hover { box-shadow: 0 4px 16px rgba(196,155,60,0.3) !important; transform: translateY(-1px); }
+  .mobile-menu-btn {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 32px; height: 32px; position: relative;
+  }
+  .mobile-menu-btn span {
+    display: block; width: 22px; height: 2px; background: #fff;
+    position: absolute; left: 5px; transition: all 0.3s;
+  }
+  .mobile-menu-btn span:nth-child(1) { top: 9px; }
+  .mobile-menu-btn span:nth-child(2) { top: 15px; }
+  .mobile-menu-btn span:nth-child(3) { top: 21px; }
+
+  .page-hero {
+    padding: 64px 48px; text-align: center;
+    position: relative; overflow: hidden;
+    background: linear-gradient(170deg, #0a2e2b 0%, #0d5c56 50%, #0f6b64 100%);
+  }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 80px, rgba(196,155,60,0.03) 80px, rgba(196,155,60,0.03) 81px); }
+  .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(196,155,60,0.08) 0%, transparent 65%); pointer-events: none; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 52px); color: #fff; margin-bottom: 16px; position: relative; z-index: 1; font-weight: 700; }
+  .page-hero h1 em { font-style: italic; color: #c49b3c; }
+  .page-hero p { font-size: 18px; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; line-height: 1.7; position: relative; z-index: 1; }
+  .hero-divider { width: 48px; height: 2px; margin: 24px auto 0; background: linear-gradient(90deg, transparent, #c49b3c, transparent); position: relative; z-index: 1; }
+  .container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+  .section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #c49b3c; margin-bottom: 14px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 38px); line-height: 1.15; color: #0a2e2b; margin-bottom: 40px; }
+  .btn-primary { display: inline-block; padding: 14px 32px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; font-family: 'DM Sans', sans-serif; background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff; transition: all 0.2s; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(196,155,60,0.3); }
+  .btn-gold { display: inline-block; padding: 14px 36px; border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; font-family: 'DM Sans', sans-serif; background: linear-gradient(135deg, #c49b3c, #dbb85c); color: #0a2e2b; transition: all 0.25s; position: relative; z-index: 1; }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,155,60,0.35); }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: #071e1c; padding: 48px 48px 32px; position: relative;
+  }
+  .footer-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 48px;
+    margin-bottom: 40px;
+  }
+  .footer-brand .nav-logo { display: inline-block; margin-bottom: 12px; }
+  .footer-brand p {
+    font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.6; max-width: 280px;
+  }
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; color: #c49b3c; margin-bottom: 16px; font-weight: 700;
+  }
+  .footer-col a {
+    display: block; font-size: 13px; color: rgba(255,255,255,0.4);
+    text-decoration: none; margin-bottom: 10px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: #c49b3c; }
+  .footer-divider {
+    width: 100%; height: 1px; background: rgba(255,255,255,0.06);
+    margin-bottom: 24px;
+  }
+  .footer-bottom {
+    max-width: 1000px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
+  .footer-socials { display: flex; gap: 16px; }
+  .footer-socials a {
+    font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none;
+    padding: 4px 12px; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 100px; transition: all 0.2s;
+  }
+  .footer-socials a:hover { color: #c49b3c; border-color: rgba(196,155,60,0.25); }
+
+  .faq-section { padding: 80px 48px; position: relative; background: linear-gradient(170deg, #fffdf8 0%, #faf6ef 50%, #f7f2e9 100%); }
+  .faq-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(196,155,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(196,155,60,0.03) 1px, transparent 1px); background-size: 72px 72px; }
+  .category { font-family: 'Playfair Display', serif; font-size: 20px; color: #0a2e2b; margin-top: 40px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid rgba(196,155,60,0.2); display: flex; align-items: center; gap: 12px; }
+  .category:first-of-type { margin-top: 0; }
+  .cat-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(196,155,60,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .faq-item { background: #fff; border: 1px solid #d5e0df; border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.3s; }
+  .faq-item:hover { border-color: #c49b3c; box-shadow: 0 4px 16px rgba(196,155,60,0.06); }
+  .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; cursor: pointer; user-select: none; gap: 16px; }
+  .faq-question h3 { font-size: 15px; font-weight: 600; color: #0a2e2b; line-height: 1.4; flex: 1; }
+  .faq-toggle { width: 28px; height: 28px; border-radius: 50%; background: rgba(196,155,60,0.1); display: flex; align-items: center; justify-content: center; font-size: 18px; color: #c49b3c; flex-shrink: 0; transition: all 0.3s; }
+  .faq-item.active .faq-toggle { background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff; transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s; }
+  .faq-item.active .faq-answer { max-height: 300px; }
+  .faq-answer-inner { padding: 0 24px 20px; font-size: 14px; color: #5a6b6a; line-height: 1.75; border-top: 1px solid #eef3f2; padding-top: 16px; }
+  .faq-answer-inner a { color: #0d5c56; font-weight: 600; text-decoration: none; }
+  .faq-answer-inner a:hover { color: #c49b3c; }
+  .more-section { padding: 80px 48px; position: relative; overflow: hidden; background: linear-gradient(170deg, #fff 0%, #f8fafa 100%); text-align: center; }
+  .contact-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 32px; }
+  .contact-card { background: #fff; border: 1px solid #d5e0df; border-radius: 14px; padding: 28px 36px; text-align: center; min-width: 200px; transition: all 0.3s; text-decoration: none; }
+  .contact-card:hover { border-color: #c49b3c; box-shadow: 0 8px 28px rgba(196,155,60,0.1); transform: translateY(-4px); }
+  .contact-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(196,155,60,0.1); display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 14px; }
+  .contact-card h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: #0a2e2b; margin-bottom: 6px; }
+  .contact-card span { font-size: 14px; color: #c49b3c; font-weight: 600; }
+  .more-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 36px); color: #0a2e2b; margin-bottom: 12px; }
+  .more-section > p { font-size: 16px; color: #5a6b6a; line-height: 1.7; max-width: 440px; margin: 0 auto; }
+
+  @media (max-width: 768px) {
+    .page-hero { padding: 48px 24px; }
+    .page-hero h1 { font-size: 30px; }
+    .page-hero p { font-size: 15px; }
+
+  /* ── MOBILE ── */
+  
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: rgba(10,46,43,0.98);
+      padding: 24px; gap: 16px;
+      border-bottom: 1px solid rgba(196,155,60,0.15);
+    }
+    .nav-links.open a { font-size: 16px; }
+    .site-footer { padding: 36px 24px 24px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-socials { justify-content: center; }
+  
+  }
+
+  @media (max-width: 768px) {
+    .faq-section { padding: 40px 20px; }
+    .faq-question { padding: 16px 18px; }
+    .faq-question h3 { font-size: 14px; }
+    .faq-answer-inner { padding: 0 18px 16px; font-size: 13px; padding-top: 12px; }
+    .more-section { padding: 40px 20px; }
+    .contact-row { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Layout<span>System</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="../index.html">Home</a>
+    <a href="../tutorials/index.html">Tutorials</a>
+    <a href="../blog/index.html">Blog</a>
+    <a class='active' href="index.html">Q&A</a>
+    <a class='nav-cta' href="../contact/index.html">Get a Quote</a>
+  </div>
+  <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-glow"></div>
+  <h1>Questions & <em>Answers</em></h1>
+  <p>Everything you need to know before getting started — and after.</p>
+  <div class="hero-divider"></div>
+</section>
+
+<section class="faq-section">
+  <div class="container" style="max-width:780px;">
+    <div class="section-label">Common questions</div>
+    <div class="section-title">Before you buy</div>
+    <div class="category"><div class="cat-icon">🚀</div> Getting Started</div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>Do you offer a free trial?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Yes! We offer a 30-day free trial with no commitments, giving you plenty of time to evaluate the system. No credit card required to start.</div></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>Can I cancel anytime?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Absolutely. You can cancel anytime with no cancellation fees. We believe in earning your business every month, not locking you into contracts.</div></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>How much does it cost?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">We have two options: a one-time purchase or a monthly plan starting at just $100/month with no commitments. Local neighborhood shoppers with 50 pages or less get 25% off. <a href="../contact/index.html">Contact us</a> for a custom quote.</div></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>Are there any signup fees?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">If you pick up the program right away, there are no sign-up fees. If you need custom updates or more involved training, there may be small fees — but we keep those to a minimum.</div></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>How do I get started?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Just email or call us. Each publication has unique ad sizes that we need to set up. We recommend sharing your screen with us for installation and training — you can use AnyDesk, Google Meet, or Zoom.</div></div></div>
+    <div class="category"><div class="cat-icon">🔒</div> Trust & Security</div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>Is this a legitimate business?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">100%. We are fully registered in New York State, with over 10 years in business. You can call the founder, Yaakov, directly at 718-705-4939. Find us on <a href="https://www.yelp.com/biz/layout-system-brooklyn">Yelp</a> and <a href="https://www.provenexpert.com/en-us/layoutsystem-com/">ProvenExpert</a>.</div></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>Is the software safe? My antivirus flagged it.</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">The program is a macro-enabled Excel workbook. Some antivirus programs may flag it as a false positive. You can safely allow it through. We constantly test to keep things secure.</div></div></div>
+    <div class="category"><div class="cat-icon">⚙️</div> How It Works</div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>Does it work with multiple users?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Yes. If you encounter any issues with shared access, try closing and re-opening the file — that usually resolves it.</div></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>What makes your FlatPlan better than competitors?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Your files stay on your PC — no uploading to a portal. We offer significantly lower pricing with a one-time purchase option. And the personal support is unmatched — you work directly with the founder.</div></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><h3>I'm getting an error in Excel. What should I do?</h3><div class="faq-toggle">+</div></div><div class="faq-answer"><div class="faq-answer-inner">Take a screenshot and send it to <a href="mailto:yaakov@layoutsystem.com">support</a> describing when the issue occurred. We'll diagnose it quickly and get you back on track.</div></div></div>
+  </div>
+</section>
+
+<section class="more-section">
+  <h2>Still have questions?</h2>
+  <p>We're real people and we love helping publishers. Reach out anytime.</p>
+  <div class="contact-row">
+    <a href="tel:7187054939" class="contact-card"><div class="contact-icon">📞</div><h3>Call us</h3><span>718-705-4939</span></a>
+    <a href="mailto:yaakov@layoutsystem.com" class="contact-card"><div class="contact-icon">✉️</div><h3>Email us</h3><span>yaakov@layoutsystem.com</span></a>
+    <a href="https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A" class="contact-card"><div class="contact-icon">🎬</div><h3>Watch tutorials</h3><span>YouTube channel</span></a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="nav-logo">Layout<span>System</span></a>
+      <p>Magazine production software that automates ad placement, page layout, and billing. Built by a publisher, for publishers.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="../index.html">Home</a>
+      <a href="../tutorials/index.html">Tutorials</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="index.html">Q&A</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:7187054939">718-705-4939</a>
+      <a href="mailto:yaakov@layoutsystem.com">yaakov@layoutsystem.com</a>
+      <a href="#">1379 Coney Island Ave<br>Brooklyn, NY 11230</a>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 LayoutSystem.com — Magazine production, simplified.</div>
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A">YouTube</a>
+      <a href="https://www.yelp.com/biz/layout-system-brooklyn">Yelp</a>
+      <a href="https://www.provenexpert.com/en-us/layoutsystem-com/">ProvenExpert</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasActive = item.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+  if (!wasActive) item.classList.add('active');
+}
+</script>
+</body>
+</html>
