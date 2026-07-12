@@ -1,0 +1,5 @@
+﻿User-agent: *
+Allow: /
+Disallow: /contact/thanks/
+
+Sitemap: https://publicationflow.com/sitemap.xml

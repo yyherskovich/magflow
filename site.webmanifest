@@ -1,0 +1,16 @@
+﻿{
+    "name":  "PublicationFlow",
+    "short_name":  "PublicationFlow",
+    "description":  "PublicationFlow helps ad-heavy magazines manage reservations, place ads, preview flatplans, create editable InDesign files, and reduce production time.",
+    "start_url":  "/",
+    "display":  "standalone",
+    "background_color":  "#0a2e2b",
+    "theme_color":  "#0a2e2b",
+    "icons":  [
+                  {
+                      "src":  "/favicon.svg",
+                      "sizes":  "any",
+                      "type":  "image/svg+xml"
+                  }
+              ]
+}
