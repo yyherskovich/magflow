@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Tutorials — LayoutSystem</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; -webkit-font-smoothing: antialiased; }
+
+  /* ── NAV ── */
+  nav {
+    position: relative; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,46,43,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(196,155,60,0.15);
+    padding: 0 48px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: #fff;
+    text-decoration: none; letter-spacing: -0.02em; font-weight: 700;
+  }
+  .nav-logo span { color: #c49b3c; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a.active { color: #c49b3c; }
+  .nav-cta {
+    background: linear-gradient(135deg, #c49b3c, #a8832e) !important;
+    color: #fff !important; padding: 10px 22px;
+    border-radius: 8px; font-weight: 600 !important;
+    transition: all 0.2s !important;
+  }
+  .nav-cta:hover { box-shadow: 0 4px 16px rgba(196,155,60,0.3) !important; transform: translateY(-1px); }
+  .mobile-menu-btn {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 32px; height: 32px; position: relative;
+  }
+  .mobile-menu-btn span {
+    display: block; width: 22px; height: 2px; background: #fff;
+    position: absolute; left: 5px; transition: all 0.3s;
+  }
+  .mobile-menu-btn span:nth-child(1) { top: 9px; }
+  .mobile-menu-btn span:nth-child(2) { top: 15px; }
+  .mobile-menu-btn span:nth-child(3) { top: 21px; }
+
+  .page-hero {
+    padding: 64px 48px; text-align: center;
+    position: relative; overflow: hidden;
+    background: linear-gradient(170deg, #0a2e2b 0%, #0d5c56 50%, #0f6b64 100%);
+  }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 80px, rgba(196,155,60,0.03) 80px, rgba(196,155,60,0.03) 81px); }
+  .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(196,155,60,0.08) 0%, transparent 65%); pointer-events: none; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 52px); color: #fff; margin-bottom: 16px; position: relative; z-index: 1; font-weight: 700; }
+  .page-hero h1 em { font-style: italic; color: #c49b3c; }
+  .page-hero p { font-size: 18px; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; line-height: 1.7; position: relative; z-index: 1; }
+  .hero-divider { width: 48px; height: 2px; margin: 24px auto 0; background: linear-gradient(90deg, transparent, #c49b3c, transparent); position: relative; z-index: 1; }
+  .container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+  .section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #c49b3c; margin-bottom: 14px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 38px); line-height: 1.15; color: #0a2e2b; margin-bottom: 40px; }
+  .btn-primary { display: inline-block; padding: 14px 32px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; font-family: 'DM Sans', sans-serif; background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff; transition: all 0.2s; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(196,155,60,0.3); }
+  .btn-gold { display: inline-block; padding: 14px 36px; border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; font-family: 'DM Sans', sans-serif; background: linear-gradient(135deg, #c49b3c, #dbb85c); color: #0a2e2b; transition: all 0.25s; position: relative; z-index: 1; }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,155,60,0.35); }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: #071e1c; padding: 48px 48px 32px; position: relative;
+  }
+  .footer-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 48px;
+    margin-bottom: 40px;
+  }
+  .footer-brand .nav-logo { display: inline-block; margin-bottom: 12px; }
+  .footer-brand p {
+    font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.6; max-width: 280px;
+  }
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; color: #c49b3c; margin-bottom: 16px; font-weight: 700;
+  }
+  .footer-col a {
+    display: block; font-size: 13px; color: rgba(255,255,255,0.4);
+    text-decoration: none; margin-bottom: 10px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: #c49b3c; }
+  .footer-divider {
+    width: 100%; height: 1px; background: rgba(255,255,255,0.06);
+    margin-bottom: 24px;
+  }
+  .footer-bottom {
+    max-width: 1000px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
+  .footer-socials { display: flex; gap: 16px; }
+  .footer-socials a {
+    font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none;
+    padding: 4px 12px; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 100px; transition: all 0.2s;
+  }
+  .footer-socials a:hover { color: #c49b3c; border-color: rgba(196,155,60,0.25); }
+
+  .tut-section { padding: 64px 48px; background: linear-gradient(170deg, #fffdf8 0%, #faf6ef 50%, #f7f2e9 100%); }
+  .tut-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(196,155,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(196,155,60,0.03) 1px, transparent 1px); background-size: 72px 72px; }
+  .tut-section { position: relative; overflow: hidden; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(196,155,60,0.1); border: 1px solid rgba(196,155,60,0.2); color: #9a7b2e; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+  .badge::before { content: '★'; font-size: 10px; }
+  .video-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #0a2e2b, #0d5c56); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .play-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(196,155,60,0.2); border: 2px solid rgba(196,155,60,0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #c49b3c; }
+  .tut-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+  .tut-card { background: #fff; border: 1px solid #d5e0df; border-radius: 16px; overflow: hidden; transition: all 0.3s; }
+  .tut-card:hover { border-color: #c49b3c; box-shadow: 0 8px 32px rgba(196,155,60,0.1); transform: translateY(-4px); }
+  .tut-card .video-placeholder { border-radius: 0; margin: 0; }
+  .tut-card-body { padding: 24px; }
+  .tut-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(196,155,60,0.1); color: #c49b3c; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+  .tut-card-body h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #0a2e2b; margin-bottom: 8px; }
+  .tut-card-body p { color: #5a6b6a; font-size: 14px; line-height: 1.65; }
+  .cta-banner { margin-top: 64px; background: linear-gradient(135deg, #0a2e2b 0%, #0d5c56 100%); border-radius: 20px; padding: 56px 48px; text-align: center; position: relative; overflow: hidden; }
+  .cta-banner::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 500px; height: 250px; background: radial-gradient(ellipse, rgba(196,155,60,0.08) 0%, transparent 65%); }
+  .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: #fff; margin-bottom: 12px; position: relative; z-index: 1; }
+  .cta-banner p { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 28px; position: relative; z-index: 1; }
+
+  @media (max-width: 768px) {
+    .page-hero { padding: 48px 24px; }
+    .page-hero h1 { font-size: 30px; }
+    .page-hero p { font-size: 15px; }
+
+  /* ── MOBILE ── */
+  
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: rgba(10,46,43,0.98);
+      padding: 24px; gap: 16px;
+      border-bottom: 1px solid rgba(196,155,60,0.15);
+    }
+    .nav-links.open a { font-size: 16px; }
+    .site-footer { padding: 36px 24px 24px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-socials { justify-content: center; }
+  
+  }
+
+  @media (max-width: 768px) {
+    .tut-section { padding: 40px 20px; }
+    .tut-grid { grid-template-columns: 1fr; }
+    .cta-banner { padding: 36px 24px; margin-top: 40px; }
+    .cta-banner h2 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">Layout<span>System</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="../index.html">Home</a>
+    <a class='active' href="index.html">Tutorials</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../qa/index.html">Q&A</a>
+    <a class='nav-cta' href="../contact/index.html">Get a Quote</a>
+  </div>
+  <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-glow"></div>
+  <h1>Learn the <em>system</em></h1>
+  <p>Step-by-step tutorials to get you up and running fast. From your first setup to advanced features — we've got you covered.</p>
+  <div class="hero-divider"></div>
+</section>
+
+<section class="tut-section">
+  <div class="container">
+    <div class="badge">Start here</div>
+    <div class="section-title">Beginner's Guide</div>
+    <div class="video-placeholder"><div class="play-icon">▶</div></div>
+    <p style="color:#5a6b6a; font-size:16px; line-height:1.7; max-width:600px;">Everything you need to know to get started with LayoutSystem. This walkthrough covers the basics — from setting up your first issue to placing your first ads and generating a layout.</p>
+
+    <div style="margin-top:56px; padding-top:24px; border-top:1px solid rgba(196,155,60,0.15);">
+      <div class="section-label">More Tutorials</div>
+    </div>
+
+    <div class="tut-grid">
+      <div class="tut-card"><div class="video-placeholder"><div class="play-icon">▶</div></div><div class="tut-card-body"><div class="tut-num">2</div><h3>System Overview</h3><p>A complete walkthrough of all features — reservations, customer history, issue tracking, and the full production workflow.</p></div></div>
+      <div class="tut-card"><div class="video-placeholder"><div class="play-icon">▶</div></div><div class="tut-card-body"><div class="tut-num">3</div><h3>Billing</h3><p>Learn how to export invoices to QuickBooks or Xero with one click, and manage your billing workflow from start to finish.</p></div></div>
+      <div class="tut-card"><div class="video-placeholder"><div class="play-icon">▶</div></div><div class="tut-card-body"><div class="tut-num">4</div><h3>Mass Emails</h3><p>How to send bulk emails to your advertisers — reminders for missing artwork, payment notifications, and custom communications.</p></div></div>
+      <div class="tut-card"><div class="video-placeholder"><div class="play-icon">▶</div></div><div class="tut-card-body"><div class="tut-num">5</div><h3>Credit Card Charging</h3><p>Save customer cards as secure tokens and process payments safely. This tutorial covers the full credit card workflow.</p></div></div>
+    </div>
+
+    <div class="cta-banner">
+      <h2>Need a hand getting set up?</h2>
+      <p>We're happy to walk you through anything. Give us a call or send an email.</p>
+      <a class='btn-gold' href="../contact/index.html">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="nav-logo">Layout<span>System</span></a>
+      <p>Magazine production software that automates ad placement, page layout, and billing. Built by a publisher, for publishers.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="../index.html">Home</a>
+      <a href="index.html">Tutorials</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../qa/index.html">Q&A</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:7187054939">718-705-4939</a>
+      <a href="mailto:yaakov@layoutsystem.com">yaakov@layoutsystem.com</a>
+      <a href="#">1379 Coney Island Ave<br>Brooklyn, NY 11230</a>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 LayoutSystem.com — Magazine production, simplified.</div>
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A">YouTube</a>
+      <a href="https://www.yelp.com/biz/layout-system-brooklyn">Yelp</a>
+      <a href="https://www.provenexpert.com/en-us/layoutsystem-com/">ProvenExpert</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
