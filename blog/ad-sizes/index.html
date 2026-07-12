@@ -133,7 +133,42 @@
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     .footer-socials { justify-content: center; }
   }
+
+  .related-articles { margin: 54px 0 18px; padding: 28px; border: 1px solid rgba(196,155,60,.25); border-radius: 8px; background: #fffdf8; }
+  .related-articles h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: #0a2e2b; margin: 0 0 18px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .related-link { display: block; text-decoration: none; color: #0a2e2b; background: #fff; border: 1px solid #d5e0df; border-radius: 8px; padding: 16px; transition: .2s ease; }
+  .related-link:hover { border-color: #c49b3c; transform: translateY(-2px); }
+  .related-link strong { display: block; font-size: 16px; margin-bottom: 6px; }
+  .related-link span { display: block; color: #60716f; font-size: 14px; line-height: 1.45; }
+  @media (max-width: 800px) { .related-grid { grid-template-columns: 1fr; } .related-articles { padding: 20px; } }
 </style>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://publicationflow.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Blog",
+                                "item":  "https://publicationflow.com/blog/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "Ad Sizes",
+                                "item":  "https://publicationflow.com/blog/ad-sizes/"
+                            }
+                        ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -175,7 +210,15 @@
 <p>PublicationFlow still lets you make changes manually. You can move ads, swap placements, and adjust the layout before the final InDesign file is created.</p>
 <p>The point is not to remove control. The point is to start with cleaner data so your team has fewer problems to fix later.</p>
 <p>Better ad sizes mean a smoother issue from the beginning.</p>
-  <div class="cta-box">
+      <section class="related-articles" aria-label="Related magazine production resources">
+      <h2>More magazine production resources</h2>
+      <div class="related-grid">
+        <a class="related-link" href="../flatplan-ad-preview/index.html"><strong>Preview ads in the flatplan</strong><span>Confirm the right creative appears in the right space.</span></a>
+<a class="related-link" href="../reservation-to-print/index.html"><strong>From reservation to print</strong><span>Move accurate ad data through the whole issue.</span></a>
+<a class="related-link" href="../../qa/index.html"><strong>Read publisher questions</strong><span>Learn how setup, Excel, and InDesign output work.</span></a>
+      </div>
+    </section>
+    <div class="cta-box">
     <h3>Ready to simplify your workflow?</h3>
     <p>Try PublicationFlow free for 30 days. No credit card, no commitment.</p>
     <a href="../../contact/index.html">Get Started Free</a>

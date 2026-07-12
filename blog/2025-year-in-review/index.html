@@ -133,7 +133,42 @@
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     .footer-socials { justify-content: center; }
   }
+
+  .related-articles { margin: 54px 0 18px; padding: 28px; border: 1px solid rgba(196,155,60,.25); border-radius: 8px; background: #fffdf8; }
+  .related-articles h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: #0a2e2b; margin: 0 0 18px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .related-link { display: block; text-decoration: none; color: #0a2e2b; background: #fff; border: 1px solid #d5e0df; border-radius: 8px; padding: 16px; transition: .2s ease; }
+  .related-link:hover { border-color: #c49b3c; transform: translateY(-2px); }
+  .related-link strong { display: block; font-size: 16px; margin-bottom: 6px; }
+  .related-link span { display: block; color: #60716f; font-size: 14px; line-height: 1.45; }
+  @media (max-width: 800px) { .related-grid { grid-template-columns: 1fr; } .related-articles { padding: 20px; } }
 </style>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://publicationflow.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Blog",
+                                "item":  "https://publicationflow.com/blog/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "2025 Year in Review",
+                                "item":  "https://publicationflow.com/blog/2025-year-in-review/"
+                            }
+                        ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -169,7 +204,15 @@
 <p>PublicationFlow is built for real publication workflows. It helps manage reservations, place ads, generate editable InDesign files, handle billing exports, support payment workflows, and send advertiser emails.</p>
 <p>The 2025 updates made that process stronger and easier to trust.</p>
 <p>If you have not looked at PublicationFlow recently, it is worth seeing what the system can now do for your publication.</p>
-  <div class="cta-box">
+      <section class="related-articles" aria-label="Related magazine production resources">
+      <h2>More magazine production resources</h2>
+      <div class="related-grid">
+        <a class="related-link" href="../flatplan-ad-preview/index.html"><strong>Explore FlatPlan Ad Preview</strong><span>One of the key workflow improvements for publishers.</span></a>
+<a class="related-link" href="../cut-production-time/index.html"><strong>Cut production time</strong><span>Turn product updates into practical issue savings.</span></a>
+<a class="related-link" href="../../qa/index.html"><strong>Read PublicationFlow Q&A</strong><span>Get answers before changing your production process.</span></a>
+      </div>
+    </section>
+    <div class="cta-box">
     <h3>Ready to simplify your workflow?</h3>
     <p>Try PublicationFlow free for 30 days. No credit card, no commitment.</p>
     <a href="../../contact/index.html">Get Started Free</a>

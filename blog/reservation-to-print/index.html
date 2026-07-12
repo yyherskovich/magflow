@@ -133,7 +133,42 @@
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     .footer-socials { justify-content: center; }
   }
+
+  .related-articles { margin: 54px 0 18px; padding: 28px; border: 1px solid rgba(196,155,60,.25); border-radius: 8px; background: #fffdf8; }
+  .related-articles h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: #0a2e2b; margin: 0 0 18px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .related-link { display: block; text-decoration: none; color: #0a2e2b; background: #fff; border: 1px solid #d5e0df; border-radius: 8px; padding: 16px; transition: .2s ease; }
+  .related-link:hover { border-color: #c49b3c; transform: translateY(-2px); }
+  .related-link strong { display: block; font-size: 16px; margin-bottom: 6px; }
+  .related-link span { display: block; color: #60716f; font-size: 14px; line-height: 1.45; }
+  @media (max-width: 800px) { .related-grid { grid-template-columns: 1fr; } .related-articles { padding: 20px; } }
 </style>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "BreadcrumbList",
+    "itemListElement":  [
+                            {
+                                "@type":  "ListItem",
+                                "position":  1,
+                                "name":  "Home",
+                                "item":  "https://publicationflow.com/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  2,
+                                "name":  "Blog",
+                                "item":  "https://publicationflow.com/blog/"
+                            },
+                            {
+                                "@type":  "ListItem",
+                                "position":  3,
+                                "name":  "Reservation to Print",
+                                "item":  "https://publicationflow.com/blog/reservation-to-print/"
+                            }
+                        ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -171,7 +206,15 @@
 <p>This is what makes the system valuable: it supports more than one part of the job.</p>
 <p>Instead of using separate tools for reservations, layout, billing, and reminders, PublicationFlow helps bring the issue together in one workflow.</p>
 <p>For publishers who want fewer mistakes and faster deadlines, that is a better way to work.</p>
-  <div class="cta-box">
+      <section class="related-articles" aria-label="Related magazine production resources">
+      <h2>More magazine production resources</h2>
+      <div class="related-grid">
+        <a class="related-link" href="../flatplan-ad-preview/index.html"><strong>Flatplan ad preview</strong><span>See the actual ads before final production.</span></a>
+<a class="related-link" href="../automate-invoicing/index.html"><strong>Automate invoicing</strong><span>Keep billing connected to production data.</span></a>
+<a class="related-link" href="../../tutorials/index.html"><strong>Watch the tutorials</strong><span>See the workflow demonstrated step by step.</span></a>
+      </div>
+    </section>
+    <div class="cta-box">
     <h3>Ready to simplify your workflow?</h3>
     <p>Try PublicationFlow free for 30 days. No credit card, no commitment.</p>
     <a href="../../contact/index.html">Get Started Free</a>
