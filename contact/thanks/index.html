@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Thank You - LayoutSystem</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: linear-gradient(170deg, #fffdf8 0%, #faf6ef 50%, #f7f2e9 100%); color: #1a1a1a; min-height: 100vh; }
+  nav {
+    height: 64px; padding: 0 48px; display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,46,43,0.95); border-bottom: 1px solid rgba(196,155,60,0.15);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; text-decoration: none; font-weight: 700; }
+  .nav-logo span { color: #c49b3c; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6); text-decoration: none; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
+  main { min-height: calc(100vh - 64px); display: grid; place-items: center; padding: 56px 24px; }
+  .message {
+    max-width: 620px; text-align: center; background: #fff; border: 1px solid #d5e0df;
+    border-top: 3px solid #c49b3c; border-radius: 20px; padding: 48px;
+    box-shadow: 0 16px 48px rgba(13,92,86,0.06);
+  }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 52px); color: #0a2e2b; margin-bottom: 16px; }
+  p { color: #5a6b6a; font-size: 17px; line-height: 1.7; margin-bottom: 28px; }
+  .button {
+    display: inline-block; padding: 14px 24px; border-radius: 10px;
+    background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff;
+    text-decoration: none; font-weight: 600;
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .message { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="../../index.html" class="nav-logo">Layout<span>System</span></a>
+  <div class="nav-links">
+    <a href="../../index.html">Home</a>
+    <a href="../../tutorials/index.html">Tutorials</a>
+    <a href="../../blog/index.html">Blog</a>
+    <a href="../../qa/index.html">Q&A</a>
+    <a class="nav-cta" href="../index.html">Get a Quote</a>
+  </div>
+</nav>
+<main>
+  <div class="message">
+    <h1>Thanks, we got it.</h1>
+    <p>Your message has been sent. We will get back to you within one business day.</p>
+    <a class="button" href="../../index.html">Back to Home</a>
+  </div>
+</main>
+</body>
+</html>
