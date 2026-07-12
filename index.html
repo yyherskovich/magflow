@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>LayoutSystem — Magazine Production, Simplified</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; -webkit-font-smoothing: antialiased; }
+
+  /* ── NAV ── */
+  nav {
+    position: relative; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,46,43,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(196,155,60,0.15);
+    padding: 0 48px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: #fff;
+    text-decoration: none; letter-spacing: -0.02em; font-weight: 700;
+  }
+  .nav-logo span { color: #c49b3c; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a.active { color: #c49b3c; }
+  .nav-cta {
+    background: linear-gradient(135deg, #c49b3c, #a8832e) !important;
+    color: #fff !important; padding: 10px 22px;
+    border-radius: 8px; font-weight: 600 !important;
+    transition: all 0.2s !important;
+  }
+  .nav-cta:hover { box-shadow: 0 4px 16px rgba(196,155,60,0.3) !important; transform: translateY(-1px); }
+  .mobile-menu-btn {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 32px; height: 32px; position: relative;
+  }
+  .mobile-menu-btn span {
+    display: block; width: 22px; height: 2px; background: #fff;
+    position: absolute; left: 5px; transition: all 0.3s;
+  }
+  .mobile-menu-btn span:nth-child(1) { top: 9px; }
+  .mobile-menu-btn span:nth-child(2) { top: 15px; }
+  .mobile-menu-btn span:nth-child(3) { top: 21px; }
+
+
+  /* ── HERO ── */
+  .hero {
+    min-height: auto; display: flex; align-items: center; justify-content: center;
+    padding: 72px 48px; position: relative; overflow: hidden;
+    background: linear-gradient(170deg, #0a2e2b 0%, #0d3d39 40%, #0f4a45 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(196,155,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(196,155,60,0.03) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+  .orb-1 { position: absolute; top: -140px; right: -100px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(196,155,60,0.06) 0%, transparent 65%); border-radius: 50%; }
+  .orb-2 { position: absolute; bottom: -120px; left: -80px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(196,155,60,0.08) 0%, transparent 65%); border-radius: 50%; }
+  .hero-inner { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; align-items: center; max-width: 1200px; width: 100%; position: relative; z-index: 1; }
+  .hero-content { animation: fadeUp 0.7s ease both; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 68px); line-height: 1.12; letter-spacing: -0.025em; color: #ffffff; margin-bottom: 24px; font-weight: 700; }
+  .hero h1 em { font-style: italic; color: #c49b3c; position: relative; }
+  .hero h1 em::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 8px; background: rgba(196,155,60,0.25); z-index: -1; border-radius: 2px; }
+  .subtext { font-size: clamp(16px, 1.3vw, 20px); color: rgba(255,255,255,0.55); max-width: 460px; line-height: 1.75; margin-bottom: 40px; }
+  .buttons { display: flex; gap: 14px; flex-wrap: nowrap; }
+  .btn { padding: 16px 36px; border-radius: 8px; font-size: clamp(14px, 1.1vw, 17px); font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; }
+  .btn-primary { background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(196,155,60,0.3); }
+  .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.25); }
+  .btn-ghost:hover { border-color: #c49b3c; color: #c49b3c; }
+  .trust-line { margin-top: 48px; display: flex; align-items: center; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.35); }
+  .trust-line::before { content: ''; width: 32px; height: 1px; background: #c49b3c; }
+  .hero-visual { position: relative; animation: fadeUp 0.7s 0.15s ease both; }
+  .hero-screenshot {
+    width: 100%; 
+  }
+
+  /* ── SHARED SECTION STYLES ── */
+  .container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+  .section-label { font-size: clamp(11px, 0.9vw, 14px); font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #c49b3c; margin-bottom: 14px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15; color: #0a2e2b; margin-bottom: 48px; }
+
+  /* ── PAIN ── */
+  .pain-section { padding: 88px 48px; position: relative; overflow: hidden; background: linear-gradient(170deg, #fffdf8 0%, #faf6ef 50%, #f7f2e9 100%); }
+  .pain-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(196,155,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(196,155,60,0.03) 1px, transparent 1px); background-size: 72px 72px; }
+  .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pain-card { background: #fff; border: 1px solid #d5e0df; border-radius: 16px; padding: 36px 28px; transition: all 0.3s; }
+  .pain-card:hover { border-color: #c49b3c; box-shadow: 0 8px 32px rgba(196,155,60,0.1); transform: translateY(-4px); }
+  .pain-icon { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: rgba(196,155,60,0.1); border-radius: 12px; font-size: 24px; margin-bottom: 20px; }
+  .pain-card h3 { font-family: 'Playfair Display', serif; font-size: clamp(18px, 1.5vw, 24px); margin-bottom: 10px; color: #0a2e2b; }
+  .pain-card p { color: #5a6b6a; font-size: clamp(14px, 1.1vw, 17px); line-height: 1.65; }
+
+  /* ── WORKFLOW ── */
+  .workflow-section { padding: 100px 48px; position: relative; overflow: hidden; background: linear-gradient(170deg, #0a2e2b 0%, #0d3d39 40%, #0f4a45 100%); }
+  .workflow-section::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 80px, rgba(196,155,60,0.03) 80px, rgba(196,155,60,0.03) 81px); }
+  .wf-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(196,155,60,0.06) 0%, transparent 70%); }
+  .workflow-section .section-title { color: #fff; margin-bottom: 16px; }
+  .workflow-sub { color: rgba(255,255,255,0.5); font-size: clamp(15px, 1.2vw, 19px); max-width: 500px; line-height: 1.7; margin-bottom: 64px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; position: relative; }
+  .steps::before { content: ''; position: absolute; top: 48px; left: 16%; right: 16%; height: 1px; background: linear-gradient(90deg, rgba(196,155,60,0.1), rgba(196,155,60,0.3), rgba(196,155,60,0.1)); }
+  .step { text-align: center; }
+  .step-num { width: 96px; height: 96px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; background: rgba(196,155,60,0.08); border: 1.5px solid rgba(196,155,60,0.2); color: #c49b3c; transition: all 0.4s; position: relative; z-index: 1; }
+  .step:hover .step-num { background: linear-gradient(135deg, #c49b3c, #a8832e); border-color: #c49b3c; color: #fff; transform: scale(1.1); box-shadow: 0 8px 32px rgba(196,155,60,0.3); }
+  .step h3 { font-family: 'Playfair Display', serif; font-size: clamp(18px, 1.6vw, 26px); margin-bottom: 12px; color: #fff; }
+  .step p { color: rgba(255,255,255,0.5); font-size: clamp(13px, 1.1vw, 16px); line-height: 1.7; max-width: 280px; margin: 0 auto; }
+  .step-divider { width: 32px; height: 2px; background: linear-gradient(90deg, #c49b3c, rgba(196,155,60,0.3)); margin: 20px auto 0; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section { padding: 100px 48px; position: relative; overflow: hidden; background: linear-gradient(170deg, #fff 0%, #f8fafa 50%, #f2f7f6 100%); }
+  .bg-quote-left { position: absolute; top: 40px; left: 40px; font-family: 'Playfair Display', serif; font-size: 400px; line-height: 1; color: rgba(196,155,60,0.08); pointer-events: none; }
+  .bg-quote-right { position: absolute; bottom: 20px; right: 60px; font-family: 'Playfair Display', serif; font-size: 300px; line-height: 1; color: rgba(13,92,86,0.06); pointer-events: none; transform: rotate(180deg); }
+  .dots-pattern { position: absolute; top: 40px; right: 60px; width: 120px; height: 120px; background-image: radial-gradient(rgba(196,155,60,0.15) 1.5px, transparent 1.5px); background-size: 16px 16px; pointer-events: none; }
+  .gold-line { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #c49b3c, transparent); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testimonial-card { background: #fff; border: 1px solid #d5e0df; border-radius: 16px; padding: 36px 28px; display: flex; flex-direction: column; transition: all 0.3s; position: relative; }
+  .testimonial-card::before { content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 2px; background: linear-gradient(90deg, transparent, rgba(196,155,60,0.3), transparent); }
+  .testimonial-card:hover { border-color: #c49b3c; box-shadow: 0 12px 40px rgba(196,155,60,0.1); transform: translateY(-4px); }
+  .quote-mark { font-family: 'Playfair Display', serif; font-size: 56px; line-height: 1; margin-bottom: 8px; background: linear-gradient(135deg, #c49b3c, #dbb85c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stars { display: flex; gap: 3px; margin-bottom: 16px; }
+  .star { color: #c49b3c; font-size: 14px; }
+  .testimonial-card blockquote { font-size: clamp(14px, 1.1vw, 17px); line-height: 1.7; color: #5a6b6a; font-style: italic; flex: 1; }
+  .testimonial-author { margin-top: 24px; padding-top: 20px; border-top: 1px solid #eef3f2; display: flex; align-items: center; gap: 12px; }
+  .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(13,92,86,0.12), rgba(196,155,60,0.12)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #0d5c56; }
+  .author-info strong { display: block; font-size: 14px; font-weight: 600; color: #0a2e2b; }
+  .author-info span { font-size: 12px; color: #8a9e9c; }
+
+  /* ── PRICING ── */
+  .pricing-section { padding: 72px 48px; position: relative; overflow: hidden; background: linear-gradient(170deg, #fffdf8 0%, #faf6ef 50%, #f7f2e9 100%); text-align: center; }
+  .pricing-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(196,155,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(196,155,60,0.03) 1px, transparent 1px); background-size: 72px 72px; }
+  .pricing-section .section-title { margin: 0 auto 36px; }
+  .pricing-box { background: #fff; border: 1px solid #d5e0df; border-top: 3px solid #c49b3c; border-radius: 20px; padding: 40px 64px; max-width: 940px; margin: 0 auto; box-shadow: 0 16px 48px rgba(13,92,86,0.06); }
+  .pricing-box h3 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 2vw, 30px); margin-bottom: 12px; color: #0a2e2b; }
+  .pricing-box > p { color: #5a6b6a; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.7; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .pricing-features { display: flex; justify-content: center; gap: 40px; margin-bottom: 24px; flex-wrap: wrap; }
+  .pricing-feature { display: flex; align-items: center; gap: 8px; font-size: clamp(13px, 1.1vw, 16px); color: #5a6b6a; }
+  .check-icon { width: 20px; height: 20px; border-radius: 50%; background: rgba(196,155,60,0.1); display: flex; align-items: center; justify-content: center; font-size: 11px; color: #c49b3c; }
+  .discount-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(196,155,60,0.08); border: 1px solid rgba(196,155,60,0.2); color: #9a7b2e; font-size: clamp(13px, 1vw, 16px); font-weight: 600; padding: 12px 24px; border-radius: 10px; margin-bottom: 24px; }
+
+  /* ── CTA ── */
+  .cta-section { padding: 100px 48px; position: relative; overflow: hidden; background: linear-gradient(135deg, #0a2e2b 0%, #0d5c56 50%, #0f6b64 100%); text-align: center; }
+  .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 400px; background: radial-gradient(ellipse, rgba(196,155,60,0.08) 0%, transparent 65%); }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 3.5vw, 52px); margin-bottom: 16px; color: #fff; position: relative; z-index: 1; }
+  .cta-sub { font-size: clamp(16px, 1.3vw, 20px); color: rgba(255,255,255,0.6); margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7; position: relative; z-index: 1; }
+  .btn-cta { display: inline-block; padding: 18px 44px; border-radius: 10px; font-size: clamp(15px, 1.2vw, 18px); font-weight: 600; text-decoration: none; font-family: 'DM Sans', sans-serif; background: linear-gradient(135deg, #c49b3c, #dbb85c); color: #0a2e2b; transition: all 0.25s; position: relative; z-index: 1; }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,155,60,0.35); }
+  .cta-contact { margin-top: 40px; position: relative; z-index: 1; }
+  .cta-divider { width: 48px; height: 1px; background: rgba(196,155,60,0.3); margin: 0 auto 24px; }
+  .cta-phone { font-family: 'Playfair Display', serif; font-size: clamp(20px, 1.8vw, 26px); font-weight: 700; color: #c49b3c; text-decoration: none; display: block; margin-bottom: 8px; }
+  .cta-email { font-size: 15px; color: rgba(255,255,255,0.7); text-decoration: none; display: block; }
+  .cta-address { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 12px; }
+
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: #071e1c; padding: 48px 48px 32px; position: relative;
+  }
+  .footer-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 48px;
+    margin-bottom: 40px;
+  }
+  .footer-brand .nav-logo { display: inline-block; margin-bottom: 12px; }
+  .footer-brand p {
+    font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.6; max-width: 280px;
+  }
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; color: #c49b3c; margin-bottom: 16px; font-weight: 700;
+  }
+  .footer-col a {
+    display: block; font-size: 13px; color: rgba(255,255,255,0.4);
+    text-decoration: none; margin-bottom: 10px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: #c49b3c; }
+  .footer-divider {
+    width: 100%; height: 1px; background: rgba(255,255,255,0.06);
+    margin-bottom: 24px;
+  }
+  .footer-bottom {
+    max-width: 1000px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
+  .footer-socials { display: flex; gap: 16px; }
+  .footer-socials a {
+    font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none;
+    padding: 4px 12px; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 100px; transition: all 0.2s;
+  }
+  .footer-socials a:hover { color: #c49b3c; border-color: rgba(196,155,60,0.25); }
+
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    .hero { padding: 60px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hero-visual { order: -1; }
+    .subtext { margin: 0 auto 32px; }
+    .buttons { justify-content: center; }
+    .btn { padding: 10px 18px; font-size: 12px; white-space: nowrap; }
+    .trust-line { justify-content: center; }
+    .trust-line::before { display: none; }
+  }
+  @media (max-width: 768px) {
+    .hero { min-height: auto; padding: 48px 20px; }
+    .hero h1 { font-size: 28px; }
+    .subtext { font-size: 14px; }
+    .btn { padding: 9px 16px; font-size: 11px; white-space: nowrap; }
+    .pain-section { padding: 48px 20px; }
+    .pain-grid { grid-template-columns: 1fr; gap: 12px; }
+    .pain-card { padding: 20px; display: flex; align-items: flex-start; gap: 14px; }
+    .pain-icon { min-width: 40px; width: 40px; height: 40px; margin-bottom: 0; font-size: 20px; }
+    .pain-card h3 { font-size: 16px; margin-bottom: 4px; }
+    .pain-card p { font-size: 13px; }
+    .workflow-section { padding: 48px 20px; }
+    .workflow-sub { font-size: 14px; margin-bottom: 32px; }
+    .steps { grid-template-columns: 1fr; gap: 8px; }
+    .steps::before { display: none; }
+    .step { text-align: left; display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(196,155,60,0.08); }
+    .step:last-child { border-bottom: none; }
+    .step-num { width: 52px; height: 52px; min-width: 52px; font-size: 22px; margin: 0; }
+    .step h3 { font-size: 17px; margin-bottom: 4px; text-align: left; }
+    .step p { font-size: 13px; max-width: none; text-align: left; margin: 0; }
+    .step-divider { display: none; }
+    .testimonials-section { padding: 48px 20px; }
+    .testimonials-grid { grid-template-columns: 1fr; gap: 14px; }
+    .testimonial-card { padding: 24px 20px; }
+    .quote-mark { font-size: 40px; }
+    .testimonial-card blockquote { font-size: 14px; }
+    .bg-quote-left, .bg-quote-right, .dots-pattern { display: none; }
+    .pricing-section { padding: 48px 20px; }
+    .pricing-box { padding: 32px 20px; }
+    .pricing-box h3 { font-size: 22px; }
+    .pricing-box > p { font-size: 14px; }
+    .pricing-features { flex-direction: column; align-items: center; gap: 10px; }
+    .discount-badge { font-size: 12px; padding: 10px 16px; }
+    .cta-section { padding: 48px 20px; }
+    .cta-section h2 { font-size: 26px; }
+    .cta-sub { font-size: 15px; }
+
+  /* ── MOBILE ── */
+  
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: rgba(10,46,43,0.98);
+      padding: 24px; gap: 16px;
+      border-bottom: 1px solid rgba(196,155,60,0.15);
+    }
+    .nav-links.open a { font-size: 16px; }
+    .site-footer { padding: 36px 24px 24px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-socials { justify-content: center; }
+  }
+
+  }
+</style>
+</head>
+<body>
+
+<nav>
+        <a href="./" class="nav-logo">Layout<span>System</span></a>
+  <div class="nav-links" id="navLinks">
+                <a href="./" class="active">Home</a>
+    <a href='/tutorials'>Tutorials</a>
+    <a href='/blog'>Blog</a>
+    <a href='/qa'>Q&A</a>
+    <a class='nav-cta' href='/contact'>Get a Quote</a>
+  </div>
+  <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="hero">
+  <div class="orb-1"></div><div class="orb-2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1>Still laying out your magazine <em>page by page?</em></h1>
+      <p class="subtext">LayoutSystem automates your entire production workflow — from ad placement to billing — so you can stop doing grunt work and start growing your business.</p>
+      <div class="buttons">
+        <a class='btn btn-primary' href='/contact'>Get Your Custom Quote</a>
+        <a class='btn btn-ghost' href='/tutorials'>See How It Works</a>
+      </div>
+      <div class="trust-line">Trusted by publishers for over 10 years</div>
+    </div>
+    <div class="hero-visual">
+            <img src="images/hero-nobg.png" alt="LayoutSystem FlatPlan software" class="hero-screenshot">
+    </div>
+  </div>
+</section>
+
+<section class="pain-section">
+  <div class="container">
+    <div class="section-label">Sound familiar?</div>
+    <div class="section-title">Every publisher hits the same walls</div>
+    <div class="pain-grid">
+      <div class="pain-card"><div class="pain-icon">⏱</div><div><h3>Hours lost to layout</h3><p>Manually placing ads page by page. Every issue, the same tedious process eating into your day.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">🔀</div><div><h3>Last-minute chaos</h3><p>One late ad comes in and suddenly you're rearranging the entire book. Again.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">📋</div><div><h3>Reservation headaches</h3><p>Tracking who booked what, who paid, who hasn't sent artwork — scattered across emails and spreadsheets.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="workflow-section">
+  <div class="wf-glow"></div>
+  <div class="container">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Three steps. That's it.</div>
+    <p class="workflow-sub">No complex onboarding. No learning curve. If you can use Excel, you can use LayoutSystem.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><h3>Enter your data</h3><p>Add your ad reservations in the Excel interface you already know. Import from your existing CRM if you prefer.</p></div><div class="step-divider"></div></div>
+      <div class="step"><div class="step-num">2</div><div><h3>Generate the layout</h3><p>Click one button. Easily assign ads to pages yourself or let our rule-based algorithm place them for you — then sit back as the program builds a complete InDesign file.</p></div><div class="step-divider"></div></div>
+      <div class="step"><div class="step-num">3</div><div><h3>Bill and publish</h3><p>Export invoices, process payments, and send your magazine to print. Done before lunch.</p></div><div class="step-divider"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="bg-quote-left">“</div><div class="bg-quote-right">“</div>
+  <div class="dots-pattern"></div><div class="gold-line"></div>
+  <div class="container">
+    <div class="section-label">What publishers say</div>
+    <div class="section-title">Don't take our word for it</div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card"><div class="quote-mark">“</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><blockquote>Deadline used to mean all-nighters, but since I bought this Layout System, the time it takes to lay out my publications dropped from hours to minutes. The support is incredible.</blockquote><div class="testimonial-author"><div class="author-avatar">A</div><div class="author-info"><strong>Aviva G.</strong><span>thecommunitylinks.com</span></div></div></div>
+      <div class="testimonial-card"><div class="quote-mark">“</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><blockquote>We've saved so much production time that we now have more capacity for customer service and changes, which helps our business grow. It's been a game changer.</blockquote><div class="testimonial-author"><div class="author-avatar">D</div><div class="author-info"><strong>Mr. Deutch</strong><span>kjcommunity.com</span></div></div></div>
+      <div class="testimonial-card"><div class="quote-mark">“</div><div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><blockquote>This program saved me many hours. Before, I manually prepared each page for print — and changes were a nightmare. The reservation list alone has made a tremendous difference.</blockquote><div class="testimonial-author"><div class="author-avatar">M</div><div class="author-info"><strong>Moishe K.</strong><span>localnewsadvertiser.co.uk</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">Surprisingly affordable</div>
+    <div class="pricing-box">
+      <h3>Prices start from just $100/month</h3>
+      <p>Or choose a one-time purchase option. We'll build a quote around your actual workflow — no bloated plans, no features you'll never touch.</p>
+      <div class="pricing-features">
+        <div class="pricing-feature"><div class="check-icon">✓</div>Automated layout</div>
+        <div class="pricing-feature"><div class="check-icon">✓</div>Issue management</div>
+        <div class="pricing-feature"><div class="check-icon">✓</div>Billing & invoicing</div>
+        <div class="pricing-feature"><div class="check-icon">✓</div>Credit card processing</div>
+      </div>
+      <div class="discount-badge">✦ 25% off for local neighborhood shoppers (50 pages or less)</div><br>
+      <a class='btn btn-primary' href='/contact'>Request Your Quote</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <h2>Ready to get your time back?</h2>
+  <p class="cta-sub">We're real people in Brooklyn, NY — and we'd love to show you how LayoutSystem fits your workflow.</p>
+  <a class='btn-cta' href='/contact'>Contact Us Today</a>
+  <div class="cta-contact">
+    <div class="cta-divider"></div>
+    <a href="tel:7187054939" class="cta-phone">718-705-4939</a>
+    <a href="mailto:yaakov@layoutsystem.com" class="cta-email">yaakov@layoutsystem.com</a>
+    <div class="cta-address">1379 Coney Island Avenue, Brooklyn NY 11230</div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+            <a href="./" class="nav-logo">Layout<span>System</span></a>
+      <p>Magazine production software that automates ad placement, page layout, and billing. Built by a publisher, for publishers.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+                <a href="./">Home</a>
+      <a href='/tutorials'>Tutorials</a>
+      <a href='/blog'>Blog</a>
+      <a href='/qa'>Q&A</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:7187054939">718-705-4939</a>
+      <a href="mailto:yaakov@layoutsystem.com">yaakov@layoutsystem.com</a>
+      <a href="#">1379 Coney Island Ave<br>Brooklyn, NY 11230</a>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 LayoutSystem.com — Magazine production, simplified.</div>
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A">YouTube</a>
+      <a href="https://www.yelp.com/biz/layout-system-brooklyn">Yelp</a>
+      <a href="https://www.provenexpert.com/en-us/layoutsystem-com/">ProvenExpert</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
