@@ -113,7 +113,8 @@
   .tut-section { position: relative; overflow: hidden; }
   .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(196,155,60,0.1); border: 1px solid rgba(196,155,60,0.2); color: #9a7b2e; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
   .badge::before { content: '★'; font-size: 10px; }
-  .video-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #0a2e2b, #0d5c56); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .video-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #0a2e2b, #0d5c56); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+  .video-placeholder iframe { width: 100%; height: 100%; border: 0; display: block; }
   .play-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(196,155,60,0.2); border: 2px solid rgba(196,155,60,0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #c49b3c; }
   .tut-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
   .tut-card { background: #fff; border: 1px solid #d5e0df; border-radius: 16px; overflow: hidden; transition: all 0.3s; }
@@ -187,7 +188,9 @@
   <div class="container">
     <div class="badge">Start here</div>
     <div class="section-title">Beginner's Guide</div>
-    <div class="video-placeholder"><div class="play-icon">▶</div></div>
+    <div class="video-placeholder">
+      <iframe title="Beginner's Guide" src="https://www.youtube.com/embed/AZROusIo0wk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
     <p style="color:#5a6b6a; font-size:16px; line-height:1.7; max-width:600px;">Everything you need to know to get started with LayoutSystem. This walkthrough covers the basics — from setting up your first issue to placing your first ads and generating a layout.</p>
 
     <div style="margin-top:56px; padding-top:24px; border-top:1px solid rgba(196,155,60,0.15);">
@@ -195,10 +198,10 @@
     </div>
 
     <div class="tut-grid">
-      <div class="tut-card"><div class="video-placeholder"><div class="play-icon">▶</div></div><div class="tut-card-body"><div class="tut-num">2</div><h3>System Overview</h3><p>A complete walkthrough of all features — reservations, customer history, issue tracking, and the full production workflow.</p></div></div>
-      <div class="tut-card"><div class="video-placeholder"><div class="play-icon">▶</div></div><div class="tut-card-body"><div class="tut-num">3</div><h3>Billing</h3><p>Learn how to export invoices to QuickBooks or Xero with one click, and manage your billing workflow from start to finish.</p></div></div>
-      <div class="tut-card"><div class="video-placeholder"><div class="play-icon">▶</div></div><div class="tut-card-body"><div class="tut-num">4</div><h3>Mass Emails</h3><p>How to send bulk emails to your advertisers — reminders for missing artwork, payment notifications, and custom communications.</p></div></div>
-      <div class="tut-card"><div class="video-placeholder"><div class="play-icon">▶</div></div><div class="tut-card-body"><div class="tut-num">5</div><h3>Credit Card Charging</h3><p>Save customer cards as secure tokens and process payments safely. This tutorial covers the full credit card workflow.</p></div></div>
+      <div class="tut-card"><div class="video-placeholder"><iframe title="System Overview" src="https://www.youtube.com/embed/yD6OUt0aKVo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="tut-card-body"><div class="tut-num">2</div><h3>System Overview</h3><p>A complete walkthrough of all features — reservations, customer history, issue tracking, and the full production workflow.</p></div></div>
+      <div class="tut-card"><div class="video-placeholder"><iframe title="Billing" src="https://www.youtube.com/embed/a_eTe0kPcsM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="tut-card-body"><div class="tut-num">3</div><h3>Billing</h3><p>Learn how to export invoices to QuickBooks or Xero with one click, and manage your billing workflow from start to finish.</p></div></div>
+      <div class="tut-card"><div class="video-placeholder"><iframe title="Mass Emails" src="https://www.youtube.com/embed/08MyTafvE7I" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="tut-card-body"><div class="tut-num">4</div><h3>Mass Emails</h3><p>How to send bulk emails to your advertisers — reminders for missing artwork, payment notifications, and custom communications.</p></div></div>
+      <div class="tut-card"><div class="video-placeholder"><iframe title="Credit Card Charging" src="https://www.youtube.com/embed/T1xCitnC1kE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="tut-card-body"><div class="tut-num">5</div><h3>Credit Card Charging</h3><p>Save customer cards as secure tokens and process payments safely. This tutorial covers the full credit card workflow.</p></div></div>
     </div>
 
     <div class="cta-banner">
