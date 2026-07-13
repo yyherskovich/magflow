@@ -114,13 +114,13 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; background: #fff; color: #163b38; -webkit-font-smoothing: antialiased; }
-  nav { position: relative; z-index: 100; background: rgba(10,46,43,0.95); border-bottom: 1px solid rgba(196,155,60,0.15); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  nav { position: sticky; top: 0; left: 0; right: 0; z-index: 1000; transition: transform 0.24s ease; background: rgba(10,46,43,0.95); border-bottom: 1px solid rgba(196,155,60,0.15); padding: 0 48px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
   .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; text-decoration: none; font-weight: 700; }
   .nav-logo span { color: #c49b3c; }
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover, .nav-links a.active { color: #c49b3c; }
-  .nav-cta { background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
+  .nav-cta { background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff !important; padding: 8px 18px; border-radius: 8px; font-weight: 600 !important; }
   .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; width: 32px; height: 32px; position: relative; }
   .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: #fff; position: absolute; left: 5px; transition: all 0.3s; }
   .mobile-menu-btn span:nth-child(1) { top: 9px; }
@@ -165,7 +165,7 @@
   .footer-socials a { font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none; padding: 4px 12px; border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; }
   @media (max-width: 900px) {
     nav { padding: 0 22px; }
-    .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #0a2e2b; flex-direction: column; padding: 22px; align-items: flex-start; }
+    .nav-links { display: none; position: absolute; top: 56px; left: 0; right: 0; background: #0a2e2b; flex-direction: column; padding: 22px; align-items: flex-start; }
     .nav-links.open { display: flex; }
     .mobile-menu-btn { display: block; }
     .intro-grid, .card-grid, .footer-inner { grid-template-columns: 1fr; gap: 28px; }
@@ -173,12 +173,13 @@
     .footer-bottom { flex-direction: column; gap: 16px; }
   }
   .nav-logo { display: inline-flex; align-items: center; line-height: 1; }
-  .site-logo { display: block; height: 40px; width: auto; max-width: min(430px, 62vw); }
-  .footer-brand .site-logo { height: 36px; max-width: 380px; }
+  .site-logo { display: block; height: 34px; width: auto; max-width: min(430px, 62vw); }
+  .footer-brand .site-logo { height: 32px; max-width: 360px; }
   @media (max-width: 768px) {
-    .site-logo { height: 34px; max-width: 282px; }
+    .site-logo { height: 30px; max-width: 250px; }
     .footer-brand .site-logo { height: 32px; }
   }
+  .nav-hidden { transform: translateY(-100%); }
 </style>
 </head>
 <body>
@@ -307,5 +308,32 @@
     <div class="footer-socials"><a href="https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A">YouTube</a></div>
   </div>
 </footer>
+<script>
+(function () {
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+  var lastY = window.scrollY || 0;
+  var ticking = false;
+  var threshold = 12;
+  function update() {
+    var currentY = window.scrollY || 0;
+    if (currentY <= 10) {
+      nav.classList.remove('nav-hidden');
+    } else if (currentY > lastY + threshold) {
+      nav.classList.add('nav-hidden');
+    } else if (currentY < lastY - threshold) {
+      nav.classList.remove('nav-hidden');
+    }
+    lastY = currentY;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>

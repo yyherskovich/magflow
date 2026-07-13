@@ -156,11 +156,11 @@
 
   /* ── NAV ── */
   nav {
-    position: relative; top: 0; left: 0; right: 0; z-index: 100;
+    position: sticky; top: 0; left: 0; right: 0; z-index: 1000; transition: transform 0.24s ease;
     background: rgba(10,46,43,0.95);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(196,155,60,0.15);
-    padding: 0 48px; height: 64px;
+    padding: 0 48px; height: 56px;
     display: flex; align-items: center; justify-content: space-between;
   }
   .nav-logo {
@@ -178,7 +178,7 @@
   .nav-links a.active { color: #c49b3c; }
   .nav-cta {
     background: linear-gradient(135deg, #c49b3c, #a8832e) !important;
-    color: #fff !important; padding: 10px 22px;
+    color: #fff !important; padding: 8px 18px;
     border-radius: 8px; font-weight: 600 !important;
     transition: all 0.2s !important;
   }
@@ -291,7 +291,7 @@
     .mobile-menu-btn { display: block; }
     .nav-links.open {
       display: flex; flex-direction: column;
-      position: absolute; top: 64px; left: 0; right: 0;
+      position: absolute; top: 56px; left: 0; right: 0;
       background: rgba(10,46,43,0.98);
       padding: 24px; gap: 16px;
       border-bottom: 1px solid rgba(196,155,60,0.15);
@@ -313,12 +313,13 @@
     .contact-row { flex-direction: column; align-items: center; }
   }
   .nav-logo { display: inline-flex; align-items: center; line-height: 1; }
-  .site-logo { display: block; height: 40px; width: auto; max-width: min(430px, 62vw); }
-  .footer-brand .site-logo { height: 36px; max-width: 380px; }
+  .site-logo { display: block; height: 34px; width: auto; max-width: min(430px, 62vw); }
+  .footer-brand .site-logo { height: 32px; max-width: 360px; }
   @media (max-width: 768px) {
-    .site-logo { height: 34px; max-width: 282px; }
+    .site-logo { height: 30px; max-width: 250px; }
     .footer-brand .site-logo { height: 32px; }
   }
+  .nav-hidden { transform: translateY(-100%); }
 </style>
 <script type="application/ld+json">
 {
@@ -435,6 +436,33 @@ function toggleFaq(el) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
   if (!wasActive) item.classList.add('active');
 }
+</script>
+<script>
+(function () {
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+  var lastY = window.scrollY || 0;
+  var ticking = false;
+  var threshold = 12;
+  function update() {
+    var currentY = window.scrollY || 0;
+    if (currentY <= 10) {
+      nav.classList.remove('nav-hidden');
+    } else if (currentY > lastY + threshold) {
+      nav.classList.add('nav-hidden');
+    } else if (currentY < lastY - threshold) {
+      nav.classList.remove('nav-hidden');
+    }
+    lastY = currentY;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>

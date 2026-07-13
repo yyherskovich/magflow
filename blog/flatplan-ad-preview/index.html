@@ -93,14 +93,14 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a1a; -webkit-font-smoothing: antialiased; }
-  nav { position: relative; background: rgba(10,46,43,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(196,155,60,0.15); padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  nav { position: sticky; top: 0; left: 0; right: 0; z-index: 1000; transition: transform 0.24s ease; background: rgba(10,46,43,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(196,155,60,0.15); padding: 0 48px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
   .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; text-decoration: none; font-weight: 700; }
   .nav-logo span { color: #c49b3c; }
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: #fff; }
   .nav-links a.active { color: #c49b3c; }
-  .nav-cta { background: linear-gradient(135deg, #c49b3c, #a8832e) !important; color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
+  .nav-cta { background: linear-gradient(135deg, #c49b3c, #a8832e) !important; color: #fff !important; padding: 8px 18px; border-radius: 8px; font-weight: 600 !important; }
   .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; width: 32px; height: 32px; position: relative; }
   .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: #fff; position: absolute; left: 5px; transition: all 0.3s; }
   .mobile-menu-btn span:nth-child(1) { top: 9px; }
@@ -142,7 +142,7 @@
     nav { padding: 0 20px; }
     .nav-links { display: none; }
     .mobile-menu-btn { display: block; }
-    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: rgba(10,46,43,0.98); padding: 24px; gap: 16px; border-bottom: 1px solid rgba(196,155,60,0.15); }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: rgba(10,46,43,0.98); padding: 24px; gap: 16px; border-bottom: 1px solid rgba(196,155,60,0.15); }
     .page-hero { padding: 48px 24px; }
     .page-hero h1 { font-size: 26px; }
     .article { padding: 40px 24px; }
@@ -163,12 +163,13 @@
   .related-link span { display: block; color: #60716f; font-size: 14px; line-height: 1.45; }
   @media (max-width: 800px) { .related-grid { grid-template-columns: 1fr; } .related-articles { padding: 20px; } }
   .nav-logo { display: inline-flex; align-items: center; line-height: 1; }
-  .site-logo { display: block; height: 40px; width: auto; max-width: min(430px, 62vw); }
-  .footer-brand .site-logo { height: 36px; max-width: 380px; }
+  .site-logo { display: block; height: 34px; width: auto; max-width: min(430px, 62vw); }
+  .footer-brand .site-logo { height: 32px; max-width: 360px; }
   @media (max-width: 768px) {
-    .site-logo { height: 34px; max-width: 282px; }
+    .site-logo { height: 30px; max-width: 250px; }
     .footer-brand .site-logo { height: 32px; }
   }
+  .nav-hidden { transform: translateY(-100%); }
 </style>
 <script type="application/ld+json">
 {
@@ -285,5 +286,32 @@
     </div>
   </div>
 </footer>
+<script>
+(function () {
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+  var lastY = window.scrollY || 0;
+  var ticking = false;
+  var threshold = 12;
+  function update() {
+    var currentY = window.scrollY || 0;
+    if (currentY <= 10) {
+      nav.classList.remove('nav-hidden');
+    } else if (currentY > lastY + threshold) {
+      nav.classList.add('nav-hidden');
+    } else if (currentY < lastY - threshold) {
+      nav.classList.remove('nav-hidden');
+    }
+    lastY = currentY;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>

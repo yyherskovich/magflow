@@ -76,11 +76,11 @@
 
   /* ── NAV ── */
   nav {
-    position: relative; top: 0; left: 0; right: 0; z-index: 100;
+    position: sticky; top: 0; left: 0; right: 0; z-index: 1000; transition: transform 0.24s ease;
     background: rgba(10,46,43,0.95);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(196,155,60,0.15);
-    padding: 0 48px; height: 64px;
+    padding: 0 48px; height: 56px;
     display: flex; align-items: center; justify-content: space-between;
   }
   .nav-logo {
@@ -98,7 +98,7 @@
   .nav-links a.active { color: #c49b3c; }
   .nav-cta {
     background: linear-gradient(135deg, #c49b3c, #a8832e) !important;
-    color: #fff !important; padding: 10px 22px;
+    color: #fff !important; padding: 8px 18px;
     border-radius: 8px; font-weight: 600 !important;
     transition: all 0.2s !important;
   }
@@ -180,7 +180,7 @@
   .badge::before { content: '★'; font-size: 10px; }
   .video-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #0a2e2b, #0d5c56); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
   .video-placeholder iframe { width: 100%; height: 100%; border: 0; display: block; }
-  .play-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(196,155,60,0.2); border: 2px solid rgba(196,155,60,0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #c49b3c; }
+  .play-icon { width: 64px; height: 56px; border-radius: 50%; background: rgba(196,155,60,0.2); border: 2px solid rgba(196,155,60,0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #c49b3c; }
   .tut-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
   .tut-card { background: #fff; border: 1px solid #d5e0df; border-radius: 16px; overflow: hidden; transition: all 0.3s; }
   .tut-card:hover { border-color: #c49b3c; box-shadow: 0 8px 32px rgba(196,155,60,0.1); transform: translateY(-4px); }
@@ -189,7 +189,7 @@
   .tut-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(196,155,60,0.1); color: #c49b3c; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
   .tut-card-body h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #0a2e2b; margin-bottom: 8px; }
   .tut-card-body p { color: #5a6b6a; font-size: 14px; line-height: 1.65; }
-  .cta-banner { margin-top: 64px; background: linear-gradient(135deg, #0a2e2b 0%, #0d5c56 100%); border-radius: 20px; padding: 56px 48px; text-align: center; position: relative; overflow: hidden; }
+  .cta-banner { margin-top: 56px; background: linear-gradient(135deg, #0a2e2b 0%, #0d5c56 100%); border-radius: 20px; padding: 56px 48px; text-align: center; position: relative; overflow: hidden; }
   .cta-banner::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 500px; height: 250px; background: radial-gradient(ellipse, rgba(196,155,60,0.08) 0%, transparent 65%); }
   .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: #fff; margin-bottom: 12px; position: relative; z-index: 1; }
   .cta-banner p { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 28px; position: relative; z-index: 1; }
@@ -206,7 +206,7 @@
     .mobile-menu-btn { display: block; }
     .nav-links.open {
       display: flex; flex-direction: column;
-      position: absolute; top: 64px; left: 0; right: 0;
+      position: absolute; top: 56px; left: 0; right: 0;
       background: rgba(10,46,43,0.98);
       padding: 24px; gap: 16px;
       border-bottom: 1px solid rgba(196,155,60,0.15);
@@ -226,12 +226,13 @@
     .cta-banner h2 { font-size: 22px; }
   }
   .nav-logo { display: inline-flex; align-items: center; line-height: 1; }
-  .site-logo { display: block; height: 40px; width: auto; max-width: min(430px, 62vw); }
-  .footer-brand .site-logo { height: 36px; max-width: 380px; }
+  .site-logo { display: block; height: 34px; width: auto; max-width: min(430px, 62vw); }
+  .footer-brand .site-logo { height: 32px; max-width: 360px; }
   @media (max-width: 768px) {
-    .site-logo { height: 34px; max-width: 282px; }
+    .site-logo { height: 30px; max-width: 250px; }
     .footer-brand .site-logo { height: 32px; }
   }
+  .nav-hidden { transform: translateY(-100%); }
 </style>
 <script type="application/ld+json">
 {
@@ -350,5 +351,32 @@
     </div>
   </div>
 </footer>
+<script>
+(function () {
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+  var lastY = window.scrollY || 0;
+  var ticking = false;
+  var threshold = 12;
+  function update() {
+    var currentY = window.scrollY || 0;
+    if (currentY <= 10) {
+      nav.classList.remove('nav-hidden');
+    } else if (currentY > lastY + threshold) {
+      nav.classList.add('nav-hidden');
+    } else if (currentY < lastY - threshold) {
+      nav.classList.remove('nav-hidden');
+    }
+    lastY = currentY;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>

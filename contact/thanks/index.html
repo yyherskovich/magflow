@@ -74,7 +74,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; background: linear-gradient(170deg, #fffdf8 0%, #faf6ef 50%, #f7f2e9 100%); color: #1a1a1a; min-height: 100vh; }
   nav {
-    height: 64px; padding: 0 48px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; left: 0; right: 0; z-index: 1000; transition: transform 0.24s ease;
+    height: 56px; padding: 0 48px; display: flex; align-items: center; justify-content: space-between;
     background: rgba(10,46,43,0.95); border-bottom: 1px solid rgba(196,155,60,0.15);
   }
   .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; text-decoration: none; font-weight: 700; }
@@ -82,7 +83,7 @@
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6); text-decoration: none; }
   .nav-links a:hover { color: #fff; }
-  .nav-cta { background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
+  .nav-cta { background: linear-gradient(135deg, #c49b3c, #a8832e); color: #fff !important; padding: 8px 18px; border-radius: 8px; font-weight: 600 !important; }
   main { min-height: calc(100vh - 64px); display: grid; place-items: center; padding: 56px 24px; }
   .message {
     max-width: 620px; text-align: center; background: #fff; border: 1px solid #d5e0df;
@@ -102,12 +103,13 @@
     .message { padding: 36px 24px; }
   }
   .nav-logo { display: inline-flex; align-items: center; line-height: 1; }
-  .site-logo { display: block; height: 40px; width: auto; max-width: min(430px, 62vw); }
-  .footer-brand .site-logo { height: 36px; max-width: 380px; }
+  .site-logo { display: block; height: 34px; width: auto; max-width: min(430px, 62vw); }
+  .footer-brand .site-logo { height: 32px; max-width: 360px; }
   @media (max-width: 768px) {
-    .site-logo { height: 34px; max-width: 282px; }
+    .site-logo { height: 30px; max-width: 250px; }
     .footer-brand .site-logo { height: 32px; }
   }
+  .nav-hidden { transform: translateY(-100%); }
 </style>
 </head>
 <body>
@@ -131,5 +133,32 @@
     <a class="button" href="../../index.html">Back to Home</a>
   </div>
 </main>
+<script>
+(function () {
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+  var lastY = window.scrollY || 0;
+  var ticking = false;
+  var threshold = 12;
+  function update() {
+    var currentY = window.scrollY || 0;
+    if (currentY <= 10) {
+      nav.classList.remove('nav-hidden');
+    } else if (currentY > lastY + threshold) {
+      nav.classList.add('nav-hidden');
+    } else if (currentY < lastY - threshold) {
+      nav.classList.remove('nav-hidden');
+    }
+    lastY = currentY;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
