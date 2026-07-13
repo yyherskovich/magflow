@@ -30,7 +30,7 @@
                        "@type":  "Organization",
                        "name":  "PublicationFlow",
                        "url":  "https://publicationflow.com/",
-                       "logo":  "https://publicationflow.com/favicon.svg",
+                       "logo":  "https://publicationflow.com/images/publicationflow-logo.svg",
                        "email":  "info@publicationflow.com",
                        "telephone":  "+1-718-705-4939",
                        "sameAs":  [
@@ -225,6 +225,13 @@
     .cta-banner { padding: 36px 24px; margin-top: 40px; }
     .cta-banner h2 { font-size: 22px; }
   }
+  .nav-logo { display: inline-flex; align-items: center; line-height: 1; }
+  .site-logo { display: block; height: 40px; width: auto; max-width: min(430px, 62vw); }
+  .footer-brand .site-logo { height: 36px; max-width: 380px; }
+  @media (max-width: 768px) {
+    .site-logo { height: 34px; max-width: 282px; }
+    .footer-brand .site-logo { height: 32px; }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -261,7 +268,7 @@
 </head>
 <body>
 <nav>
-  <a href="../index.html" class="nav-logo">Publication<span>Flow</span></a>
+  <a href="../index.html" class="nav-logo"><img src="../images/publicationflow-logo.svg" alt="PublicationFlow" class="site-logo"></a>
   <div class="nav-links" id="navLinks">
     <a href="../index.html">Home</a>
     <a href="../about/index.html">About</a>
@@ -315,7 +322,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="../index.html" class="nav-logo">Publication<span>Flow</span></a>
+      <a href="../index.html" class="nav-logo"><img src="../images/publicationflow-logo.svg" alt="PublicationFlow" class="site-logo"></a>
       <p>Magazine production software that automates ad placement, page layout, and billing. Built by a publisher, for publishers.</p>
     </div>
     <div class="footer-col">

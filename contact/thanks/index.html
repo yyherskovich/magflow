@@ -30,7 +30,7 @@
                        "@type":  "Organization",
                        "name":  "PublicationFlow",
                        "url":  "https://publicationflow.com/",
-                       "logo":  "https://publicationflow.com/favicon.svg",
+                       "logo":  "https://publicationflow.com/images/publicationflow-logo.svg",
                        "email":  "info@publicationflow.com",
                        "telephone":  "+1-718-705-4939",
                        "sameAs":  [
@@ -101,11 +101,18 @@
     .nav-links { display: none; }
     .message { padding: 36px 24px; }
   }
+  .nav-logo { display: inline-flex; align-items: center; line-height: 1; }
+  .site-logo { display: block; height: 40px; width: auto; max-width: min(430px, 62vw); }
+  .footer-brand .site-logo { height: 36px; max-width: 380px; }
+  @media (max-width: 768px) {
+    .site-logo { height: 34px; max-width: 282px; }
+    .footer-brand .site-logo { height: 32px; }
+  }
 </style>
 </head>
 <body>
 <nav>
-  <a href="../../index.html" class="nav-logo">Publication<span>Flow</span></a>
+  <a href="../../index.html" class="nav-logo"><img src="../../images/publicationflow-logo.svg" alt="PublicationFlow" class="site-logo"></a>
   <div class="nav-links">
     <a href="../../index.html">Home</a>
     <a href="../../about/index.html">About</a>
