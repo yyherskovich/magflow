@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://publicationflow.com/tutorials/</loc>
+    <video:video><video:thumbnail_loc>https://img.youtube.com/vi/AZROusIo0wk/hqdefault.jpg</video:thumbnail_loc><video:title>PublicationFlow Beginner's Guide</video:title><video:description>A beginner walkthrough for setting up an issue, placing ads, and generating a publication layout in PublicationFlow.</video:description><video:player_loc>https://www.youtube.com/embed/AZROusIo0wk</video:player_loc></video:video>
+    <video:video><video:thumbnail_loc>https://img.youtube.com/vi/yD6OUt0aKVo/hqdefault.jpg</video:thumbnail_loc><video:title>PublicationFlow System Overview</video:title><video:description>A PublicationFlow overview covering reservations, customer history, issue tracking, and production workflow.</video:description><video:player_loc>https://www.youtube.com/embed/yD6OUt0aKVo</video:player_loc></video:video>
+    <video:video><video:thumbnail_loc>https://img.youtube.com/vi/a_eTe0kPcsM/hqdefault.jpg</video:thumbnail_loc><video:title>PublicationFlow Billing</video:title><video:description>A billing workflow tutorial for exporting invoices and managing publication billing in PublicationFlow.</video:description><video:player_loc>https://www.youtube.com/embed/a_eTe0kPcsM</video:player_loc></video:video>
+    <video:video><video:thumbnail_loc>https://img.youtube.com/vi/08MyTafvE7I/hqdefault.jpg</video:thumbnail_loc><video:title>PublicationFlow Mass Emails</video:title><video:description>A tutorial about sending advertiser emails, artwork reminders, payment notifications, and custom communications.</video:description><video:player_loc>https://www.youtube.com/embed/08MyTafvE7I</video:player_loc></video:video>
+    <video:video><video:thumbnail_loc>https://img.youtube.com/vi/T1xCitnC1kE/hqdefault.jpg</video:thumbnail_loc><video:title>PublicationFlow Credit Card Charging</video:title><video:description>A tutorial covering secure tokenized card storage and payment processing workflows in PublicationFlow.</video:description><video:player_loc>https://www.youtube.com/embed/T1xCitnC1kE</video:player_loc></video:video>
+  </url>
+</urlset>

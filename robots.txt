@@ -1,4 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 Disallow: /contact/thanks/
 
@@ -15,3 +15,4 @@ User-agent: Googlebot
 Allow: /
 
 Sitemap: https://publicationflow.com/sitemap.xml
+Sitemap: https://publicationflow.com/video-sitemap.xml
