@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About PublicationFlow - Magazine Ad Management Software</title>
 <meta name="description" content="PublicationFlow is magazine ad management and production workflow software for ad-heavy publishers that need reservations, flatplans, ad placement, InDesign output, proofing, and billing in one workflow.">
+<meta name="application-name" content="PublicationFlow">
+<meta name="apple-mobile-web-app-title" content="PublicationFlow">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://publicationflow.com/about/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -22,66 +24,88 @@
 <meta name="twitter:image" content="https://publicationflow.com/images/hero-nobg.png">
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://publicationflow.com/#organization",
-      "name": "PublicationFlow",
-      "url": "https://publicationflow.com/",
-      "logo": "https://publicationflow.com/favicon.svg",
-      "email": "info@publicationflow.com",
-      "telephone": "+1-718-705-4939",
-      "sameAs": [
-        "https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A",
-        "https://www.layoutsystem.com/"
-      ],
-      "description": "PublicationFlow provides magazine ad management and production workflow software for ad-heavy publications."
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://publicationflow.com/#website",
-      "name": "PublicationFlow",
-      "url": "https://publicationflow.com/",
-      "publisher": { "@id": "https://publicationflow.com/#organization" }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://publicationflow.com/#software",
-      "name": "PublicationFlow",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Windows",
-      "url": "https://publicationflow.com/",
-      "publisher": { "@id": "https://publicationflow.com/#organization" },
-      "description": "Magazine ad management software for advertiser reservations, flatplans, ad placement, editable InDesign output, proofing, and billing.",
-      "audience": {
-        "@type": "Audience",
-        "audienceType": "Ad-heavy magazine publishers, local publications, community shoppers, directories, and niche publishers"
-      },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://publicationflow.com/contact/",
-        "availability": "https://schema.org/InStock",
-        "description": "Custom quote and free trial available"
-      }
-    },
-    {
-      "@type": "AboutPage",
-      "@id": "https://publicationflow.com/about/#webpage",
-      "name": "About PublicationFlow",
-      "url": "https://publicationflow.com/about/",
-      "isPartOf": { "@id": "https://publicationflow.com/#website" },
-      "about": { "@id": "https://publicationflow.com/#software" },
-      "description": "PublicationFlow is built for ad-heavy publication teams that need one connected workflow from reservation list to finished issue."
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://publicationflow.com/" },
-        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://publicationflow.com/about/" }
-      ]
-    }
-  ]
+    "@context":  "https://schema.org",
+    "@graph":  [
+                   {
+                       "@type":  "Organization",
+                       "@id":  "https://publicationflow.com/#organization",
+                       "name":  "PublicationFlow",
+                       "url":  "https://publicationflow.com/",
+                       "logo":  "https://publicationflow.com/favicon.svg",
+                       "email":  "info@publicationflow.com",
+                       "telephone":  "+1-718-705-4939",
+                       "sameAs":  [
+                                      "https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A",
+                                      "https://www.layoutsystem.com/"
+                                  ],
+                       "description":  "PublicationFlow provides magazine ad management and production workflow software for ad-heavy publications."
+                   },
+                   {
+                       "@type":  "WebSite",
+                       "@id":  "https://publicationflow.com/#website",
+                       "name":  "PublicationFlow",
+                       "url":  "https://publicationflow.com/",
+                       "publisher":  {
+                                         "@id":  "https://publicationflow.com/#organization"
+                                     },
+                       "alternateName":  [
+                                             "Publication Flow",
+                                             "PublicationFlow.com"
+                                         ]
+                   },
+                   {
+                       "@type":  "SoftwareApplication",
+                       "@id":  "https://publicationflow.com/#software",
+                       "name":  "PublicationFlow",
+                       "applicationCategory":  "BusinessApplication",
+                       "operatingSystem":  "Windows",
+                       "url":  "https://publicationflow.com/",
+                       "publisher":  {
+                                         "@id":  "https://publicationflow.com/#organization"
+                                     },
+                       "description":  "Magazine ad management software for advertiser reservations, flatplans, ad placement, editable InDesign output, proofing, and billing.",
+                       "audience":  {
+                                        "@type":  "Audience",
+                                        "audienceType":  "Ad-heavy magazine publishers, local publications, community shoppers, directories, and niche publishers"
+                                    },
+                       "offers":  {
+                                      "@type":  "Offer",
+                                      "url":  "https://publicationflow.com/contact/",
+                                      "availability":  "https://schema.org/InStock",
+                                      "description":  "Custom quote and free trial available"
+                                  }
+                   },
+                   {
+                       "@type":  "AboutPage",
+                       "@id":  "https://publicationflow.com/about/#webpage",
+                       "name":  "About PublicationFlow",
+                       "url":  "https://publicationflow.com/about/",
+                       "isPartOf":  {
+                                        "@id":  "https://publicationflow.com/#website"
+                                    },
+                       "about":  {
+                                     "@id":  "https://publicationflow.com/#software"
+                                 },
+                       "description":  "PublicationFlow is built for ad-heavy publication teams that need one connected workflow from reservation list to finished issue."
+                   },
+                   {
+                       "@type":  "BreadcrumbList",
+                       "itemListElement":  [
+                                               {
+                                                   "@type":  "ListItem",
+                                                   "position":  1,
+                                                   "name":  "Home",
+                                                   "item":  "https://publicationflow.com/"
+                                               },
+                                               {
+                                                   "@type":  "ListItem",
+                                                   "position":  2,
+                                                   "name":  "About",
+                                                   "item":  "https://publicationflow.com/about/"
+                                               }
+                                           ]
+                   }
+               ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
