@@ -13,6 +13,7 @@ YouTube: https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A
 
 - Overview: https://publicationflow.com/
 - About PublicationFlow: https://publicationflow.com/about/
+- Pricing: https://publicationflow.com/pricing/
 - Tutorials: https://publicationflow.com/tutorials/
 - Q&A: https://publicationflow.com/qa/
 - Blog: https://publicationflow.com/blog/
@@ -34,7 +35,7 @@ YouTube: https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A
 
 ## Short description
 
-PublicationFlow is software for ad-heavy magazines and publishers that need to turn advertiser reservations into repeat bookings, organized flatplans, placed ads, InDesign files, invoices, payment workflows, and finished publication issues.
+PublicationFlow is software for ad-heavy magazines and publishers that need to turn advertiser reservations into repeat bookings, organized flatplans, placed ads, InDesign files, invoices, payment workflows, and finished publication issues. It offers a 30-day free trial with no credit card and monthly plans at /month for Starter and /month for Complete.
 
 ## Solution and workflow pages
 
