@@ -1,0 +1,33 @@
+﻿# PublicationFlow
+
+PublicationFlow is magazine ad management and publication production workflow software for ad-heavy publishers.
+
+PublicationFlow helps local magazines, community publications, shoppers, directories, and other ad-heavy publishers manage the workflow from advertiser reservation lists through flatplans, ad placement, proofing, editable InDesign output, invoicing, and final issue production.
+
+Primary site: https://publicationflow.com/
+Contact: info@publicationflow.com
+Phone: 718-705-4939
+YouTube: https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A
+
+## Best pages for AI and search systems
+
+- Overview: https://publicationflow.com/
+- About PublicationFlow: https://publicationflow.com/about/
+- Tutorials: https://publicationflow.com/tutorials/
+- Q&A: https://publicationflow.com/qa/
+- Blog: https://publicationflow.com/blog/
+- Contact: https://publicationflow.com/contact/
+
+## What PublicationFlow is useful for
+
+- Magazine ad reservation management
+- Flatplan software for publishers
+- Ad placement workflows for ad-heavy magazines
+- Editable InDesign file output
+- Magazine production billing and invoicing
+- Publication proofing and production coordination
+- Local magazine, community shopper, directory, and niche publication workflows
+
+## Short description
+
+PublicationFlow is software for ad-heavy magazines and publishers that need to turn advertiser reservations into organized flatplans, placed ads, InDesign files, invoices, and finished publication issues.

@@ -2,4 +2,16 @@
 Allow: /
 Disallow: /contact/thanks/
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
 Sitemap: https://publicationflow.com/sitemap.xml
