@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -61,16 +61,28 @@
                    },
                    {
                        "@type":  "SoftwareApplication",
+                       "@id":  "https://publicationflow.com/#software",
                        "name":  "PublicationFlow",
                        "applicationCategory":  "BusinessApplication",
-                       "operatingSystem":  "Windows, macOS",
-                       "description":  "PublicationFlow helps ad-heavy magazines manage reservations, place ads, preview flatplans, create editable InDesign files, and reduce production time.",
+                       "applicationSubCategory":  "Magazine ad management and production workflow software",
+                       "operatingSystem":  "Windows",
+                       "description":  "PublicationFlow helps ad-heavy magazines manage reservations, place ads, preview flatplans, create editable InDesign files, send invoices, process payments, and reduce production time.",
                        "url":  "https://publicationflow.com/",
+                       "trial":  "30-day free trial with no credit card and no commitment",
+                       "featureList":  [
+                                           "Ad reservation management",
+                                           "Flatplan and ad placement workflow",
+                                           "Editable InDesign file output",
+                                           "Artwork reminders and missing-ad checks",
+                                           "Connected invoicing, billing, and payment workflows"
+                                       ],
                        "offers":  {
-                                      "@type":  "Offer",
-                                      "price":  "0",
+                                      "@type":  "AggregateOffer",
                                       "priceCurrency":  "USD",
-                                      "description":  "Free trial available"
+                                      "lowPrice":  "100",
+                                      "highPrice":  "149",
+                                      "offerCount":  "2",
+                                      "url":  "https://publicationflow.com/pricing/"
                                   },
                        "publisher":  {
                                          "@id":  "https://publicationflow.com/#organization"
@@ -217,7 +229,7 @@
   .pricing-box { background: #fff; border: 1px solid #d5e0df; border-top: 3px solid #c49b3c; border-radius: 20px; padding: 40px 64px; max-width: 940px; margin: 0 auto; box-shadow: 0 16px 48px rgba(13,92,86,0.06); }
   .pricing-box h3 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 2vw, 30px); margin-bottom: 12px; color: #0a2e2b; }
   .pricing-box > p { color: #5a6b6a; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.7; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto; }
-  .pricing-features { display: flex; justify-content: center; gap: 40px; margin-bottom: 24px; flex-wrap: wrap; }
+  .pricing-features { display: flex; justify-content: center; gap: 40px; margin-bottom: 36px; flex-wrap: wrap; }
   .pricing-feature { display: flex; align-items: center; gap: 8px; font-size: clamp(13px, 1.1vw, 16px); color: #5a6b6a; }
   .check-icon { width: 20px; height: 20px; border-radius: 50%; background: rgba(196,155,60,0.1); display: flex; align-items: center; justify-content: center; font-size: 11px; color: #c49b3c; }
   .discount-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(196,155,60,0.08); border: 1px solid rgba(196,155,60,0.2); color: #9a7b2e; font-size: clamp(13px, 1vw, 16px); font-weight: 600; padding: 12px 24px; border-radius: 10px; margin-bottom: 24px; }
@@ -544,3 +556,5 @@
 </script>
 </body>
 </html>
+
+
