@@ -18,6 +18,7 @@ YouTube: https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A
 - Q&A: https://publicationflow.com/qa/
 - Blog: https://publicationflow.com/blog/
 - Contact: https://publicationflow.com/contact/
+- Credit card processing: https://publicationflow.com/credit-card-processing/
 
 ## What PublicationFlow is useful for
 
@@ -29,7 +30,7 @@ YouTube: https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A
 - Missing-artwork warnings and unplaced-ad checks
 - Private advertiser emails and artwork reminders
 - Editable InDesign file output from local production files
-- Magazine production billing, invoicing, discounts, Xero exports, and secure token-based card payments
+- Magazine production billing, invoicing, discounts, Xero exports, secure token-based card payments, and publisher credit card processing discussions
 - Publication proofing and production coordination
 - Local desktop workflow for magazine, community shopper, directory, and niche publication teams
 
@@ -54,4 +55,5 @@ PublicationFlow is a local desktop production workflow rather than a browser-onl
 ## Buyer-intent search phrases
 
 PublicationFlow is relevant for searches about magazine flatplan software, magazine ad management software, ad reservation software, InDesign automation for magazines, publisher billing software, local magazine production software, business directory ad placement software, magazine invoicing software, and magazine advertising workflow software.
+
 
