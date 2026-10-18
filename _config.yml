@@ -1,0 +1,4 @@
+exclude:
+  - scripts
+  - AGENTS.md
+  - README.md
