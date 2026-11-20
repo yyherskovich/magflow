@@ -283,6 +283,17 @@
 }
 </script>
 <link rel="stylesheet" href="/assets/site-updates.css">
+<style>
+  .form-card .trial-request-status{margin:16px 0 0;padding:12px 14px;border-radius:8px;background:#eaf3ee;color:#194d43;font-size:14px;line-height:1.6}
+  .form-card .trial-request-error{background:#fff3e4;color:#704318;border:1px solid #e5c89c}
+  .form-card .trial-request-help{margin-top:14px;padding:14px;border:1px solid #d5e0df;border-radius:8px}
+  .form-card .trial-request-help p{font-size:13px;line-height:1.6;margin:0 0 8px}
+  .form-card .trial-request-help p:last-child{margin-bottom:0}
+  .trial-request-help a{color:#0d5c56;text-underline-offset:3px}
+  .trial-request-status[hidden],.trial-request-help[hidden]{display:none}
+  .form-card .btn-submit:disabled{cursor:wait;opacity:.75}
+</style>
+<script src="/assets/trial-request.js" defer></script>
 </head>
 <body>
 
@@ -338,9 +349,7 @@
       <h3>Request your free trial</h3>
       <p>Get immediate access to the online demo after submitting this form.</p>
 
-      <form id="contactForm" name="contact" action="https://formsubmit.co/info@publicationflow.com" method="POST">
-        <input type="hidden" name="_subject" value="New PublicationFlow free trial request">
-        <input type="hidden" name="_template" value="table">
+      <form id="contactForm" name="contact" action="https://issues-test.publicationflow.com/trial-request.php" method="POST">
         <input type="hidden" name="_next" value="https://publicationflow.com/contact/thanks/">
         <p style="display:none"><label>Don't fill this out: <input name="_honey"></label></p>
 
@@ -393,6 +402,11 @@
         </div>
 
         <button type="submit" class="btn-submit">Request Free Trial &mdash; Get Immediate Access</button>
+        <p id="trialRequestStatus" class="trial-request-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
+        <div id="trialRequestHelp" class="trial-request-help" hidden>
+          <p>You can send your request directly to <a href="mailto:info@publicationflow.com?subject=PublicationFlow%20free%20trial%20request">info@publicationflow.com</a> or call <a href="tel:7187054939">718-705-4939</a>.</p>
+          <p>You can also <a href="/demo/">open the online demo now</a>. Opening the demo does not submit your request.</p>
+        </div>
         <div class="form-note">On the next screen, click <strong>Open Your Free Trial</strong> to start exploring. Your details are used to respond to your request.</div>
       </form>
     </div>
