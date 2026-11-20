@@ -38,7 +38,7 @@ async function visit(directory) {
       const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head\s*>/i)?.[1] || '';
       const loaders = html.match(/<script\b[^>]*src=["']https:\/\/www\.googletagmanager\.com\/gtag\/js\?[^"']+["'][^>]*>/gi) || [];
       const configs = html.match(/gtag\s*\(\s*["']config["']/g) || [];
-      if (!head.includes(snippet.replaceAll('\n', html.includes('\r\n') ? '\r\n' : '\n')) || loaders.length !== 1 || configs.length !== 1) {
+      if (!head.replaceAll('\r\n', '\n').includes(snippet) || loaders.length !== 1 || configs.length !== 1) {
         failures.push(`${name}: expected exactly one Google tag for ${measurementId} in <head>`);
       }
       count++;

@@ -12,3 +12,11 @@ The first command adds the shared tag to new untagged pages. The second checks
 all pages for missing, incorrect, or duplicate tags. Keep this check passing
 before committing or publishing. Do not add another analytics loader or send a
 second manual page_view event: Google's config command already sends pageviews.
+
+Marketing updates: keep Tutorials out of navigation while it covers the desktop version.
+Trial buttons should say Request Free Trial and link to /contact/. Preserve the form
+confirmation at /contact/thanks/ with its immediate-access button to /demo/.
+Present the online option as the online demo, with professional, factual copy. Avoid
+unverified feature claims and unfinished/development wording. Keep the ACP Associate Member badge
+in the marketing-page footer; membership was confirmed for November 2026 through
+October 2027. Reconfirm membership before extending that claim beyond that period.
