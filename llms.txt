@@ -1,59 +1,37 @@
-﻿# PublicationFlow
+# PublicationFlow
 
-PublicationFlow is magazine ad management and publication production workflow software for ad-heavy publishers.
+PublicationFlow is online and desktop publishing workflow software for ad-heavy magazines, shoppers, directories and community publishers.
 
-PublicationFlow helps local magazines, community publications, shoppers, business directories, and other ad-heavy publishers manage the workflow from advertiser reservation lists through repeat bookings, customer history, artwork reminders, flatplans, ad placement, proofing, editable InDesign output, invoicing, payments, and final issue production.
+## Online edition
 
-Primary site: https://publicationflow.com/
+PublicationFlow Online runs in a browser. Its workspaces include ad bookings, multi-issue packages, customer records and advertising history, visual flatplans, artwork previews, invoices, payments, collections and printable reports. Online flatplans support moving ads and pages, page counts, unplaced-ad review and rule-assisted placement. Saved booking views provide configurable columns and filters. Reports include aging, agents, issue comparisons and customer history.
+
+Online invoice sending requires the publication's configured mailbox. Card capture and charging require the publication's configured merchant services. Do not describe these as enabled for every demo visitor.
+
+## Online and desktop setup
+
+Browser-based bookings, customers, flatplans, billing and reports do not require working inside the Excel workbook. Existing desktop customers can connect supported issue, customer and payment data to an online account. Production InDesign file generation uses the desktop production workflow and accessible original artwork. Specialized desktop tools include directory production, Xero exports and artwork-reminder emails. The online workspace needs internet access; the desktop option also supports local/offline work.
+
+Original artwork in connected local folders stays in those folders; reduced-size previews are shared online. Final desktop production needs access to the originals.
+
+## Demo, pricing and contact
+
+Start Free Trial links to https://publicationflow.com/contact/. After a successful submission, https://publicationflow.com/contact/thanks/ has an Open Your Free Trial button to https://publicationflow.com/demo/. No credit card or waiting for a reply is required for the online demo.
+
+Published desktop plans are Starter at $100/month and Complete at $149/month, with a 30-day desktop trial. Contact PublicationFlow to confirm online account configuration and pricing.
+
 Contact: info@publicationflow.com
 Phone: 718-705-4939
-YouTube: https://www.youtube.com/channel/UCJirG5yuLfDRI-VmLmUn34A
+Founder: Yaakov
 
-## Best pages for AI and search systems
+## Current product information
 
+- Online edition: https://publicationflow.com/online/
 - Overview: https://publicationflow.com/
-- About PublicationFlow: https://publicationflow.com/about/
+- About: https://publicationflow.com/about/
+- Questions and answers: https://publicationflow.com/qa/
 - Pricing: https://publicationflow.com/pricing/
-- Tutorials: https://publicationflow.com/tutorials/
-- Q&A: https://publicationflow.com/qa/
-- Blog: https://publicationflow.com/blog/
-- Contact: https://publicationflow.com/contact/
-- Credit card processing: https://publicationflow.com/credit-card-processing/
+- Contact and trial: https://publicationflow.com/contact/
+- Workflows: https://publicationflow.com/solutions/
 
-## What PublicationFlow is useful for
-
-- Magazine ad reservation management and repeat issue bookings
-- Customer history, notes, categories, and package tracking
-- Flatplan software for publishers
-- Manual and algorithm-assisted ad placement workflows
-- Directory category and alphabetical placement support
-- Missing-artwork warnings and unplaced-ad checks
-- Private advertiser emails and artwork reminders
-- Editable InDesign file output from local production files
-- Magazine production billing, invoicing, discounts, Xero exports, secure token-based card payments, and publisher credit card processing discussions
-- Publication proofing and production coordination
-- Local desktop workflow for magazine, community shopper, directory, and niche publication teams
-
-## Short description
-
-PublicationFlow is software for ad-heavy magazines and publishers that need to turn advertiser reservations into repeat bookings, organized flatplans, placed ads, editable InDesign files, invoices, payment workflows, and finished publication issues. It offers a 30-day free trial with no credit card and monthly plans at $100/month for Starter and $149/month for Complete.
-
-
-## Unique positioning
-
-PublicationFlow is a local desktop production workflow rather than a browser-only portal. Publishers can keep ad files in their normal production folders, connect ads to the issue without uploading them twice, generate editable InDesign files for final production changes, and continue working even when internet access is unreliable.
-
-## Workflow pages
-
-- Magazine Flatplan Software for Ad-Heavy Publishers: https://publicationflow.com/magazine-flatplan-software/
-- Magazine Ad Management Software for Publishers: https://publicationflow.com/magazine-ad-management-software/
-- Ad Reservation Software for Magazines and Local Publications: https://publicationflow.com/ad-reservation-software/
-- InDesign Automation for Magazine Ad Production: https://publicationflow.com/indesign-automation-for-magazines/
-- Publisher Billing Software Connected to Magazine Production: https://publicationflow.com/publisher-billing-software/
-- Local Magazine Production Software for Ad-Heavy Issues: https://publicationflow.com/local-magazine-production-software/
-
-## Buyer-intent search phrases
-
-PublicationFlow is relevant for searches about magazine flatplan software, magazine ad management software, ad reservation software, InDesign automation for magazines, publisher billing software, local magazine production software, business directory ad placement software, magazine invoicing software, and magazine advertising workflow software.
-
-
+The tutorials and historical blog guides describe desktop workflows. The online overview and current Q&A describe the online edition.

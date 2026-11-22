@@ -26,3 +26,10 @@ one async loader before </body> for
 https://code.tidio.co/iyvdeiw59ir0j541zpgtjv8q6jgwgnir.js.
 The /demo/ page only forwards to the existing app and does not load the marketing widget.
 Keep the widget installation separate from the trial form endpoint and analytics.
+
+Online positioning: /online/ and the current Q&A are the current online feature overview.
+Lead with online bookings, customers, flatplans, invoices, collections and reports.
+Production InDesign generation and specialized desktop tools use the desktop workflow.
+Do not claim feature-for-feature parity or describe planned AI booking as already available.
+Published $100/$149 plans are desktop plans; confirm online pricing with the owner.
+Keep public copy and FAQ structured data consistent.

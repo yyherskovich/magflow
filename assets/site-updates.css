@@ -20,3 +20,5 @@
 .trial-secondary{color:#456e65;font-size:13px;text-underline-offset:4px}
 .form-card .btn-submit{white-space:normal;line-height:1.5}
 @media(max-width:768px){.online-preview-section{padding:8px 20px 40px}.online-preview{padding:28px 24px;flex-direction:column;align-items:flex-start;gap:24px}.online-preview h2{font-size:26px}.online-preview>.btn{width:100%;text-align:center}.form-card .btn-submit{font-size:14px}.acp-logo-panel img{width:160px}}
+
+.edition-note{max-width:1080px;margin:28px auto;padding:18px 24px;border-left:3px solid #c49b3c;border-radius:8px;background:#f5f8f6;color:#49615e;font-size:15px;line-height:1.7}.edition-note a{color:#0d5c56;text-underline-offset:3px}@media(max-width:900px){.edition-note{margin:20px 22px}}
